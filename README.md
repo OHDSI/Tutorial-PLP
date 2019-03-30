@@ -1,48 +1,36 @@
 # Tutorial-CDM
-Materials necessary for the "OMOP Common Data Model & Standardized Vocabularies Tutorial".  This tutorial will discuss all the details on the structure of the OMOP-CDM and the Standardized Vocabularies that are used to harmonize terminology. There are no pre-requisite courses.
+Materials necessary for the "Patient-Level Prediction Tutorial".  
 
-## Description & Objectives 
-This course will give an introduction into the history of Observational Medical Outcomes Partnership (OMOP) and the birth of Observation Health Data Sciences and Informatics (OHDSI). It highlights OHDSI’s vision as well as how OHDSI is trying to drive the future of observational research through network studies. All of this introduction lays the importance for the rest of the course’s material. 
+## Description & Objectives
+This workshop is for researchers who want to design prediction studies for precision medicine and disease interception using the OHDSI tools and programmers who want to implement and execute prediction studies using the OHDSI methods library.
 
-The course will then move on to understanding the OMOP Vocabularies; it is important to understand how the Vocabulary is used and work through examples prior to moving on to the OMOP Common Data Model (CDM). The final portion of the course will explain in detail the layout of the CDM as well as some key concepts such as era logic.
+The participants will define their own prediction problem and will work on this as a group. The course starts with an introduction to Patient-Level Prediction, after which the OHDSI Framework is explained in detail. Driven by an actual use case the usage of the tools are demonstrated.
 
-After successful completion of this course students should understand why the OMOP Vocabulary is important to the OHDSI standardization process and conceptually understand how to navigate it. Additionally, students will understand the structure of the OMOP CDM and how one might conduct observational research using it. This course will not go into detail on how to perform a transformation into the CDM (commonly referred to the Extract, Transform, & Load (ETL) process) nor will it explore in detail OHDSI tools such as ATLAS.
+Course prerequisites: knowledge of OMOP CDM and Vocabularies and either 1) epidemiologic knowledge understanding of how to define cohorts or 2) R programming skills.
+
+Participants are encouraged to watch these tutorials from past years in preparation for the tutorial:
+
+CDM tutorial: https://github.com/Tutorial-CDM
+
+Cohort definition: https://www.ohdsi.org/ohdsi-cohort-definition-and-phenotyping-tutorial-recording/
 
 ## Pre-Reads
-* [Lauren's Story (Endometriosis UK)](https://www.endometriosis-uk.org/laurens-story)
-* [Common Data Model Wiki](https://github.com/OHDSI/CommonDataModel/wiki) (OPTIONAL)
-* Reich C, Ryan PB, Stang PE, Rocca M. Evaluation of alternative standardized terminologies for medical conditions within a network of observational healthcare databases. J Biomed Inform. 2012 Aug;45(4):689-96. doi: 10.1016/j.jbi.2012.05.002. Epub 2012 Jun 7. PubMed PMID: [22683994](https://www.ncbi.nlm.nih.gov/pubmed/22683994). (OPTIONAL)
+Required:
+* You will be trained to use the OHDSI PLP Framework described in this paper: Reps JM, Schuemie MJ, Suchard MA, Ryan PB, Rijnbeek PR. [Design and implementation of a standardized framework to generate and evaluate patient-level prediction models using observational healthcare data](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6077830/). J Am Med Inform Assoc. 2018;25(8):969-975)
+* Furthermore, during the course, you will be participating in an exercise to review a published prediction model: the CHADS2 score for predicting stroke in patients with Atrial Fibrillation. Gage BF1, Waterman AD, Shannon W, Boechler M, Rich MW, Radford MJ. [Validation of clinical classification schemes for predicting stroke: results from the National Registry of Atrial Fibrillation.](https://jamanetwork.com/journals/jama/fullarticle/193912) JAMA. 2001 Jun 13;285(22):2864-70.
 
-## Materials for Students
-* [PowerPoint](https://github.com/OHDSI/Tutorial-CDM/blob/master/materials/OHDSI%20Vocabulary%20CDM%20Tutorial.pptx)
-* [Example SQL](https://github.com/OHDSI/Tutorial-CDM/blob/master/materials/sql/OMOP%20CDM%20Vocabulary%20Training.sql)
+* You will evaluate the quality of the analysis and the completeness of the reporting of the model using the TRIPOD statement Collins GS, Reitsma JB, Altman DG, Moons KG.  [Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis (TRIPOD)](https://annals.org/aim/fullarticle/2088542/transparent-reporting-multivariable-prediction-model-individual-prognosis-diagnosis-tripod-explanation).  Ann Intern Med. 2015 May 19;162(10):735-6. doi: 10.7326/L15-5093-2.
 
-## AWS Setup
-* [OHDSI-In-a-Box](https://github.com/OHDSI/OHDSI-in-a-Box)
-* OHDSI Tools Required
-	* Data
-		* [Synpuf](https://github.com/OHDSI/ETL-CMS)
+## Recommended Reading:
+A common area of confusion in the field is the difference between explanatory models – as would be used for causal inference in population-level effect estimation - and predictive models – as we are teaching you here to use for patient-level prediction.  The [paper](http://www.galitshmueli.com/system/files/MISQ-Predictive-Analytics-in-IS-Shmueli-Koppius%20-2011.pdf) by Shmueli and Koppius provides a nice summary of some of the conceptual distinctions in problem formulation, objective setting, model fitting, and results evaluation.
+
+For those who prefer a [video](https://www.youtube.com/watch?v=whD2sYFHW8c) to a paper, here’s a nice presentation by Dr. Shmueli that covers most of the points in her paper.
+
+Predictive models in observational data are becoming increasingly popular, but as a field, we are not consistently applying best practices in their execution or reporting.  This recent review by Goldstein et al evaluates the predictive models observed in the literature, highlighting common pitfalls that we hope to teach you to avoid, and offering suggestions that may resonate with you as you look to design and implement your own models or review literature from predictive models built by others.
+Goldstein BA, Navar AM, Pencina MJ, Ioannidis JP.  [Opportunities and challenges in developing risk prediction models with electronic health records data: a systematic review.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5201180/)  J Am Med Inform Assoc. 2017 Jan;24(1):198-208. doi: 10.1093/jamia/ocw042. Epub 2016 May 17.
+
 
 ## Previously Recorded Tutorials
 This tutorial has been given and recorded previously if you would like to preview it.
 
-* 2018 OHDSI Symposium
-	* [Part 1](https://www.youtube.com/watch?v=h4mZOBzcqsg)
-	* [Part 2](https://www.youtube.com/watch?v=smFm4DHyb-c)
-	* [Part 3](https://www.youtube.com/watch?v=kh47k-qBMYw)
-	* [Part 4](https://www.youtube.com/watch?v=fD9W0VY1W0U)
-	* [Part 5](https://www.youtube.com/watch?v=obBvy8g08QI)
-* [2018 European OHDSI Symposium](https://www.youtube.com/watch?v=wLTpWVmuuxg)
-* 2017 OHDSI Symposium
-	* [Part 1](https://www.youtube.com/watch?v=BExsHYxkvTw)
-	* [Part 2](https://www.youtube.com/watch?v=SkK6ytZqmfw)
-	* [Part 3](https://www.youtube.com/watch?v=c4PpKKRhxo4)
-	* [Part 4](https://www.youtube.com/watch?v=yW8CHT3DQHQ)
-	* [Part 5](https://www.youtube.com/watch?v=iKsxwxOoIMQ)
-* 2016 OHDSI Symposium
-	* OMOP Vocabulary Tutorial
-		* [Part 1](https://www.youtube.com/watch?v=3YXV95YueYE)
-		* [Part 2](https://www.youtube.com/watch?v=P_9A7Jsnh68)
-		* [Part 3](https://www.youtube.com/watch?v=nxf0vxxWV30)
-	* OMOP Common Data Model
-		* [Part 1](https://www.youtube.com/watch?v=T03GC4IBrLo)
+* [2018 OHDSI Symposium](https://www.ohdsi.org/past-events/patient-level-prediction/)
