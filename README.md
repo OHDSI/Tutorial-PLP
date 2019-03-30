@@ -14,8 +14,7 @@ CDM tutorial: https://github.com/Tutorial-CDM
 
 Cohort definition: https://www.ohdsi.org/ohdsi-cohort-definition-and-phenotyping-tutorial-recording/
 
-## Pre-Reads
-Required:
+## Required Reading
 * You will be trained to use the OHDSI PLP Framework described in this paper: Reps JM, Schuemie MJ, Suchard MA, Ryan PB, Rijnbeek PR. [Design and implementation of a standardized framework to generate and evaluate patient-level prediction models using observational healthcare data](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6077830/). J Am Med Inform Assoc. 2018;25(8):969-975)
 * Furthermore, during the course, you will be participating in an exercise to review a published prediction model: the CHADS2 score for predicting stroke in patients with Atrial Fibrillation. Gage BF1, Waterman AD, Shannon W, Boechler M, Rich MW, Radford MJ. [Validation of clinical classification schemes for predicting stroke: results from the National Registry of Atrial Fibrillation.](https://jamanetwork.com/journals/jama/fullarticle/193912) JAMA. 2001 Jun 13;285(22):2864-70.
 
