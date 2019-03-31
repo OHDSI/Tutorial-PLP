@@ -1,4 +1,4 @@
-# Tutorial-CDM
+# Tutorial-PLP
 Materials necessary for the "Patient-Level Prediction Tutorial".  
 
 ## Description & Objectives
