@@ -70,15 +70,15 @@ modelDesign[[2]] <- createModelDesign(
   sampleSettings = createSampleSettings(), 
   preprocessSettings = createPreprocessSettings(), 
   modelSettings = setRandomForest(
-    ntrees = 500, 
-    maxDepth = c(3,7,10,14),
-    mtries =  'sqrt'
+    ntrees = list(500), 
+    maxDepth = list(3,7,10,14),
+    mtries =  list('sqrt')
     ), 
   splitSettings = createDefaultSplitSetting()
 )
 
 # next run an adaBoost
-modelDesign[[2]] <- createModelDesign(
+modelDesign[[3]] <- createModelDesign(
   targetId = 4, 
   outcomeId = 3, 
   restrictPlpDataSettings = createRestrictPlpDataSettings(), 
@@ -98,7 +98,7 @@ modelDesign[[2]] <- createModelDesign(
   sampleSettings = createSampleSettings(), 
   preprocessSettings = createPreprocessSettings(), 
   modelSettings = setAdaBoost(
-    nEstimators = 200
+    nEstimators = list(200)
   ), 
   splitSettings = createDefaultSplitSetting()
 )
@@ -112,7 +112,7 @@ databaseDetails <- createDatabaseDetails(
 
 model <- runMultiplePlp(
   databaseDetails = databaseDetails, 
-  modelDesignList = list(modelDesign), 
+  modelDesignList = modelDesign, 
   saveDirectory = file.path(getwd(), 'example_python_plp')
   )
 

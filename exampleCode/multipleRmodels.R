@@ -77,7 +77,7 @@ databaseDetails <- createDatabaseDetails(
 
 model <- runMultiplePlp(
   databaseDetails = databaseDetails, 
-  modelDesignList = list(modelDesign), 
+  modelDesignList = modelDesign, 
   saveDirectory = file.path(getwd(), 'example_multiple_plp')
   )
 
