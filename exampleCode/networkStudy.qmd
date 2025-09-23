@@ -1,0 +1,184 @@
+---
+title: "PatientLevelPrediction with Strategus"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: show
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+---
+
+# Overview
+
+This document shows how to:
+
+* Load cohort JSONs and generate cohorts using `CohortGenerator`.
+* Configure a `PatientLevelPrediction` (PLP) design.
+* Assemble `Strategus` analysis specifications
+* Execute the analysis specifications against a DuckDB Synthea example database.
+
+
+# Setup
+
+Here we need to set up our environment. First, if you don't have R installed please follow the HADES installation instructions  for your operating system from [here](https://ohdsi.github.io/Hades/articles/rSetup.html).
+
+Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are `PatientLevelPrediction`, `CohortGenerator` and `Strategus`. Also to use the example database you need to install `duckdb`. Since `Strategus` is still under development you need to install it from github which requires the `remotes` package.
+
+```{r}
+#| label: setup
+# Install required packages (uncomment if needed):
+# install.packages(c("PatientLevelPrediction", "CohortGenerator", "remotes", "duckdb"))
+# remotes::install_github("OHDSI/Strategus")
+
+library(PatientLevelPrediction)
+library(Strategus)
+
+seed <- 42
+```
+
+Further please download the example database from [here](https://drive.google.com/file/d/1l5wq57fAslnoFR2umFQvVZbDiq5IK0UF/) and place in your location of choice. Then update the dbPath cariable to point to that location:
+
+```{r}
+dbPath <- "~/database/database-1M_filtered.duckdb"
+```
+
+Here are the schema settings and cohort_table name for the example database. If you would run tthe example for your own database you would need to update these settings.
+
+```{r}
+cdmSchema <- "main"
+workSchema <- "cohorts"
+cohortTable <- "cohort_table"
+```
+
+# Cohort Generation
+
+To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from [here]()
+
+
+```{r} 
+#| label: cohort-generation
+targetFile <- "./cohorts/31_[T] Pandemic Prediction new target.json"
+outcomeFile <- "./cohorts/14_[O] Pandemic Prediction outcome pneumonia in hospital.json"
+
+cohortDefinitions <- CohortGenerator::createEmptyCohortDefinitionSet()
+cohortDefinitions[1, ] <- list(
+  cohortId = 1,
+  cohortName = "Target",
+  sql = "",
+  json = readChar(targetFile, file.info(targetFile)$size)
+)
+cohortDefinitions[2, ] <- list(
+  cohortId = 2,
+  cohortName = "Outcome",
+  sql = "empty",
+  json = readChar(outcomeFile, file.info(outcomeFile)$size)
+)
+
+cohortGeneratorModule <- CohortGeneratorModule$new()
+cohortDefShared <- cohortGeneratorModule$createCohortSharedResourceSpecifications(cohortDefinitions)
+
+cohortGeneratorModuleSpecifications <- cohortGeneratorModule$createModuleSpecifications(
+  generateStats = TRUE
+)
+```
+
+# PLP Design
+```{r}
+#| label: plp-design
+
+covariateSettings <- FeatureExtraction::createDefaultCovariateSettings()
+
+populationSettings <- createStudyPopulationSettings(
+  binary = TRUE,
+  removeSubjectsWithPriorOutcome = TRUE,
+  requireTimeAtRisk = FALSE,
+  riskWindowStart = 1,
+  riskWindowEnd = 30,
+)
+
+preprocessSettings <- createPreprocessSettings(
+  minFraction = 0.001,
+  normalize = TRUE,
+  removeRedundancy = TRUE
+)
+
+splitSettings <- createDefaultSplitSetting(splitSeed = seed)
+
+# Choose model based on parameter (baseline: lasso logistic)
+modelSettings <- PatientLevelPrediction::setLassoLogisticRegression(seed = seed)
+  # Other options (require additional packages; see Exercises below):
+  # PatientLevelPrediction::setGradientBoostingMachine(ntrees = 100, seed = seed),
+  # PatientLevelPrediction::setRandomForest(mtries = 10, seed = seed),
+  # PatientLevelPrediction::setXgBoost(nrounds = 100, seed = seed),
+
+message(sprintf("Model selected: %s | Split seed: %s", "LASSO", seed))
+
+modelDesign <- PatientLevelPrediction::createModelDesign(
+  targetId = 1,
+  outcomeId = 2,
+  populationSettings = populationSettings,
+  covariateSettings = covariateSettings,
+  preprocessSettings = preprocessSettings,
+  modelSettings = modelSettings,
+  splitSettings = splitSettings,
+  runCovariateSummary = TRUE
+)
+
+plpModule <- PatientLevelPredictionModule$new()
+plpModuleSpecs <- plpModule$createModuleSpecifications(modelDesignList = modelDesign)
+```
+
+# Strategus Analysis Specifications
+
+```{r} 
+#| label: analysis-specs
+
+analysisSpecifications <- createEmptyAnalysisSpecifications() |>
+  addSharedResources(cohortDefShared) |>
+  addModuleSpecifications(cohortGeneratorModuleSpecifications) |>
+  addModuleSpecifications(plpModuleSpecs)
+
+ParallelLogger::saveSettingsToJson(analysisSpecifications, "analysisSpecifications.json")
+```
+
+# Execution settings and running
+```{r}
+#| label: execute
+workFolder <- normalizePath("./results/strategus/work")
+resultsFolder <- normalizePath("./results/strategus/results")
+
+executionSettings <- Strategus::createCdmExecutionSettings(
+  workDatabaseSchema = workSchema,
+  cdmDatabaseSchema = cdmSchema,
+  cohortTableNames = CohortGenerator::getCohortTableNames(cohortTable = cohortTable),
+  workFolder = workFolder,
+  resultsFolder = resultsFolder,
+  incremental = FALSE
+)
+
+connectionDetails <- DatabaseConnector::createConnectionDetails(
+  dbms = "duckdb",
+  server = dbPath
+)
+
+# Execute the study (may take some minutes depending on data size)
+Strategus::execute(
+  analysisSpecifications,
+  executionSettings = executionSettings,
+  connectionDetails = connectionDetails
+)
+```
+
+# View Results
+
+```{r}
+analysisLocation <- file.path(workFolder, "PatientLevelPredictionModule")
+PatientLevelPrediction::viewMultiplePlp(analysisLocation)
+
+```
+
