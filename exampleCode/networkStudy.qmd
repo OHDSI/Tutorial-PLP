@@ -262,6 +262,11 @@ PatientLevelPrediction::viewMultiplePlp(analysisLocation)
 
 # Exercises
 
+::: {.callout-tip}
+## Reset Between Runs
+If you plan to re-run the exercises with different settings, remove the contents of `./results/strategus/work/PatientLevelPredictionModule/` between runs so `PLP` does not skip running. Adjust the path if you used a different `workFolder`.
+:::
+
 1. **Model Exploration**: Modify the `modelSettings` in the PLP design section to experiment with different algorithms like Random Forest or XGBoost. Observe how these changes impact model performance metrics.
 
    ::: {.column-margin}
