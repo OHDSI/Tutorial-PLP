@@ -626,23 +626,558 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   |======================================================================| 100%</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Generating cohort set took 1.78 secs</code></pre>
+<pre><code>Generating cohort set took 1.58 secs</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cdmDatabaseId is not a string - this will cause issues when inserting into a result database so casting it
 Use timeStamp: TRUE
-Data for target 1 exists at /home/egill/github/Tutorial-PLP/exampleCode/results/strategus/work/PatientLevelPredictionModule/targetId_1_L1
-Diagnosis  Analysis_1 exists at /home/egill/github/Tutorial-PLP/exampleCode/results/strategus/work/PatientLevelPredictionModule/Analysis_1
-Analysis  Analysis_1 exists at /home/egill/github/Tutorial-PLP/exampleCode/results/strategus/work/PatientLevelPredictionModule/Analysis_1</code></pre>
+Extracting data for cohort 1 to ./results/strategus/work/PatientLevelPredictionModule/targetId_1_L1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>PLP result tables already exist
-PLP result migration being applied
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======================                                               |  33%
+  |                                                                            
+  |===============================================                       |  67%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Constructing features on server
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=                                                                     |   1%
+  |                                                                            
+  |=                                                                     |   2%
+  |                                                                            
+  |==                                                                    |   2%
+  |                                                                            
+  |==                                                                    |   3%
+  |                                                                            
+  |===                                                                   |   4%
+  |                                                                            
+  |===                                                                   |   5%
+  |                                                                            
+  |====                                                                  |   5%
+  |                                                                            
+  |====                                                                  |   6%
+  |                                                                            
+  |=====                                                                 |   7%
+  |                                                                            
+  |=====                                                                 |   8%
+  |                                                                            
+  |======                                                                |   8%
+  |                                                                            
+  |======                                                                |   9%
+  |                                                                            
+  |=======                                                               |   9%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |=======                                                               |  11%
+  |                                                                            
+  |========                                                              |  11%
+  |                                                                            
+  |========                                                              |  12%
+  |                                                                            
+  |=========                                                             |  12%
+  |                                                                            
+  |=========                                                             |  13%
+  |                                                                            
+  |=========                                                             |  14%
+  |                                                                            
+  |==========                                                            |  14%
+  |                                                                            
+  |==========                                                            |  15%
+  |                                                                            
+  |===========                                                           |  15%
+  |                                                                            
+  |===========                                                           |  16%
+  |                                                                            
+  |============                                                          |  17%
+  |                                                                            
+  |============                                                          |  18%
+  |                                                                            
+  |=============                                                         |  18%
+  |                                                                            
+  |=============                                                         |  19%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |==============                                                        |  21%
+  |                                                                            
+  |===============                                                       |  21%
+  |                                                                            
+  |===============                                                       |  22%
+  |                                                                            
+  |================                                                      |  22%
+  |                                                                            
+  |================                                                      |  23%
+  |                                                                            
+  |=================                                                     |  24%
+  |                                                                            
+  |=================                                                     |  25%
+  |                                                                            
+  |==================                                                    |  25%
+  |                                                                            
+  |==================                                                    |  26%
+  |                                                                            
+  |===================                                                   |  27%
+  |                                                                            
+  |===================                                                   |  28%
+  |                                                                            
+  |====================                                                  |  28%
+  |                                                                            
+  |====================                                                  |  29%
+  |                                                                            
+  |=====================                                                 |  29%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |======================                                                |  31%
+  |                                                                            
+  |======================                                                |  32%
+  |                                                                            
+  |=======================                                               |  32%
+  |                                                                            
+  |=======================                                               |  33%
+  |                                                                            
+  |========================                                              |  34%
+  |                                                                            
+  |========================                                              |  35%
+  |                                                                            
+  |=========================                                             |  35%
+  |                                                                            
+  |=========================                                             |  36%
+  |                                                                            
+  |==========================                                            |  36%
+  |                                                                            
+  |==========================                                            |  37%
+  |                                                                            
+  |==========================                                            |  38%
+  |                                                                            
+  |===========================                                           |  38%
+  |                                                                            
+  |===========================                                           |  39%
+  |                                                                            
+  |============================                                          |  39%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |============================                                          |  41%
+  |                                                                            
+  |=============================                                         |  41%
+  |                                                                            
+  |=============================                                         |  42%
+  |                                                                            
+  |==============================                                        |  42%
+  |                                                                            
+  |==============================                                        |  43%
+  |                                                                            
+  |===============================                                       |  44%
+  |                                                                            
+  |===============================                                       |  45%
+  |                                                                            
+  |================================                                      |  45%
+  |                                                                            
+  |================================                                      |  46%
+  |                                                                            
+  |=================================                                     |  47%
+  |                                                                            
+  |=================================                                     |  48%
+  |                                                                            
+  |==================================                                    |  48%
+  |                                                                            
+  |==================================                                    |  49%
+  |                                                                            
+  |===================================                                   |  50%
+  |                                                                            
+  |====================================                                  |  51%
+  |                                                                            
+  |====================================                                  |  52%
+  |                                                                            
+  |=====================================                                 |  52%
+  |                                                                            
+  |=====================================                                 |  53%
+  |                                                                            
+  |======================================                                |  54%
+  |                                                                            
+  |======================================                                |  55%
+  |                                                                            
+  |=======================================                               |  55%
+  |                                                                            
+  |=======================================                               |  56%
+  |                                                                            
+  |========================================                              |  57%
+  |                                                                            
+  |========================================                              |  58%
+  |                                                                            
+  |=========================================                             |  58%
+  |                                                                            
+  |=========================================                             |  59%
+  |                                                                            
+  |==========================================                            |  59%
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |==========================================                            |  61%
+  |                                                                            
+  |===========================================                           |  61%
+  |                                                                            
+  |===========================================                           |  62%
+  |                                                                            
+  |============================================                          |  62%
+  |                                                                            
+  |============================================                          |  63%
+  |                                                                            
+  |============================================                          |  64%
+  |                                                                            
+  |=============================================                         |  64%
+  |                                                                            
+  |=============================================                         |  65%
+  |                                                                            
+  |==============================================                        |  65%
+  |                                                                            
+  |==============================================                        |  66%
+  |                                                                            
+  |===============================================                       |  67%
+  |                                                                            
+  |===============================================                       |  68%
+  |                                                                            
+  |================================================                      |  68%
+  |                                                                            
+  |================================================                      |  69%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |=================================================                     |  71%
+  |                                                                            
+  |==================================================                    |  71%
+  |                                                                            
+  |==================================================                    |  72%
+  |                                                                            
+  |===================================================                   |  72%
+  |                                                                            
+  |===================================================                   |  73%
+  |                                                                            
+  |====================================================                  |  74%
+  |                                                                            
+  |====================================================                  |  75%
+  |                                                                            
+  |=====================================================                 |  75%
+  |                                                                            
+  |=====================================================                 |  76%
+  |                                                                            
+  |======================================================                |  77%
+  |                                                                            
+  |======================================================                |  78%
+  |                                                                            
+  |=======================================================               |  78%
+  |                                                                            
+  |=======================================================               |  79%
+  |                                                                            
+  |========================================================              |  79%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |=========================================================             |  81%
+  |                                                                            
+  |=========================================================             |  82%
+  |                                                                            
+  |==========================================================            |  82%
+  |                                                                            
+  |==========================================================            |  83%
+  |                                                                            
+  |===========================================================           |  84%
+  |                                                                            
+  |===========================================================           |  85%
+  |                                                                            
+  |============================================================          |  85%
+  |                                                                            
+  |============================================================          |  86%
+  |                                                                            
+  |=============================================================         |  86%
+  |                                                                            
+  |=============================================================         |  87%
+  |                                                                            
+  |=============================================================         |  88%
+  |                                                                            
+  |==============================================================        |  88%
+  |                                                                            
+  |==============================================================        |  89%
+  |                                                                            
+  |===============================================================       |  89%
+  |                                                                            
+  |===============================================================       |  90%
+  |                                                                            
+  |===============================================================       |  91%
+  |                                                                            
+  |================================================================      |  91%
+  |                                                                            
+  |================================================================      |  92%
+  |                                                                            
+  |=================================================================     |  92%
+  |                                                                            
+  |=================================================================     |  93%
+  |                                                                            
+  |==================================================================    |  94%
+  |                                                                            
+  |==================================================================    |  95%
+  |                                                                            
+  |===================================================================   |  95%
+  |                                                                            
+  |===================================================================   |  96%
+  |                                                                            
+  |====================================================================  |  97%
+  |                                                                            
+  |====================================================================  |  98%
+  |                                                                            
+  |===================================================================== |  98%
+  |                                                                            
+  |===================================================================== |  99%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fetching data from server
+Fetching data took 43.9 secs
+Creating save directory at: ./results/strategus/work/PatientLevelPredictionModule/Analysis_1
+Diagnosing impact of priorOutcomeLookback in populationSettings
+Outcome is 0 or 1
+Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
+Population created in 0.142 secs
+Outcome is 0 or 1
+Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
+Population created in 0.0552 secs
+Outcome is 0 or 1
+Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
+Population created in 0.135 secs
+Outcome is 0 or 1
+Population created with: 45551 observations, 45551 unique subjects and 442 outcomes
+Population created in 0.128 secs
+Outcome is 0 or 1
+Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
+Population created in 0.267 secs
+Outcome is 0 or 1
+Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
+Population created in 0.0439 secs
+Outcome is 0 or 1
+Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
+Population created in 0.133 secs
+Saving diagnosePlp to ./results/strategus/work/PatientLevelPredictionModule/Analysis_1/diagnosePlp.rds
+Patient-Level Prediction Package version 6.5.0
+Study started at: 2025-09-28 19:16:53.098074
+AnalysisID:         Analysis_1
+AnalysisName:       Study details
+TargetID:           1
+OutcomeID:          2
+Cohort size:        59828
+Covariates:         3696
+Creating population
+Outcome is 0 or 1
+Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
+Population created in 0.129 secs
+seed: 42
+Creating a 25% test and 75% train (into 3 folds) random stratified split by class
+Data split into 11387 test cases and 34164 train cases (11389, 11388, 11387)
+Data split in 0.955 secs
+Train Set:
+Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
+3476 covariates in train data
+Test Set:
+11387 patients with 110 outcomes
+Removing 13 redundant covariates
+Removing 1567 infrequent covariates
+Normalizing covariates
+Tidying covariates took 1.05 secs
+Train Set:
+Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
+1896 covariates in train data
+Test Set:
+11387 patients with 110 outcomes
+
+Running Cyclops
+Done.
+GLM fit status:  OK
+Creating variable importance data frame
+Prediction took 0.157 secs
+Time to fit model: 11.5 secs
+Removing infrequent and redundant covariates and normalizing
+Removing infrequent and redundant covariates covariates and normalizing took 0.296 secs
+Prediction took 0.119 secs
+Prediction done in: 0.542 secs
+Calculating Performance for Test
+=============
+AUC                 72.89
+95% lower AUC:      67.52
+95% upper AUC:      78.27
+AUPRC:              16.41
+Brier:              0.01
+Eavg:               0.00
+Calibration in large- Mean predicted risk 0.0101 : observed risk 0.0097
+Calibration in large- Intercept -0.1947
+Weak calibration intercept: -0.1947 - gradient:0.9626
+Hosmer-Lemeshow calibration gradient: 0.78 intercept:         0.00
+Average Precision:  0.17
+Calculating Performance for Train
+=============
+AUC                 81.66
+95% lower AUC:      79.26
+95% upper AUC:      84.05
+AUPRC:              16.44
+Brier:              0.01
+Eavg:               0.00
+Calibration in large- Mean predicted risk 0.0097 : observed risk 0.0097
+Calibration in large- Intercept 0.6386
+Weak calibration intercept: 0.6386 - gradient:1.1587
+Hosmer-Lemeshow calibration gradient: 1.18 intercept:         -0.00
+Average Precision:  0.17
+Calculating Performance for CV
+=============
+AUC                 75.84
+95% lower AUC:      73.16
+95% upper AUC:      78.52
+AUPRC:              11.37
+Brier:              0.01
+Eavg:               0.00
+Calibration in large- Mean predicted risk 0.0097 : observed risk 0.0097
+Calibration in large- Intercept 0.004
+Weak calibration intercept: 0.004 - gradient:1.0013
+Hosmer-Lemeshow calibration gradient: 0.93 intercept:         0.00
+Average Precision:  0.11
+Time to calculate evaluation metrics: 1.4 secs
+Calculating covariate summary @ 2025-09-28 19:17:08.859539
+This can take a while...
+Creating binary labels
+Joining with strata
+calculating subset of strata 1
+calculating subset of strata 2
+calculating subset of strata 3
+calculating subset of strata 4
+Restricting to subgroup
+Calculating summary for subgroup TrainWithNoOutcome
+Restricting to subgroup
+Calculating summary for subgroup TestWithNoOutcome
+Restricting to subgroup
+Calculating summary for subgroup TrainWithOutcome
+Restricting to subgroup
+Calculating summary for subgroup TestWithOutcome
+Aggregating with labels and strata
+Finished covariate summary @ 2025-09-28 19:17:11.462613
+Time to calculate covariate summary: 2.6 secs
+Run finished successfully.
+Saving PlpResult
+Creating directory to save model
+plpResult saved to ..\./results/strategus/work/PatientLevelPredictionModule/Analysis_1\plpResult
+runPlp time taken: 18.6 secs</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>All or some PLP result tables do not exist, tables being recreated
+Deleting existing tables
+Creating PLP results tables
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |==                                                                    |   3%
+  |                                                                            
+  |=====                                                                 |   7%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |=========                                                             |  13%
+  |                                                                            
+  |============                                                          |  17%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |================                                                      |  23%
+  |                                                                            
+  |===================                                                   |  27%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |=======================                                               |  33%
+  |                                                                            
+  |==========================                                            |  37%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |==============================                                        |  43%
+  |                                                                            
+  |=================================                                     |  47%
+  |                                                                            
+  |===================================                                   |  50%
+  |                                                                            
+  |=====================================                                 |  53%
+  |                                                                            
+  |========================================                              |  57%
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |============================================                          |  63%
+  |                                                                            
+  |===============================================                       |  67%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |===================================================                   |  73%
+  |                                                                            
+  |======================================================                |  77%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |==========================================================            |  83%
+  |                                                                            
+  |=============================================================         |  87%
+  |                                                                            
+  |===============================================================       |  90%
+  |                                                                            
+  |=================================================================     |  93%
+  |                                                                            
+  |====================================================================  |  97%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PLP result migration being applied
 Migrating data set
 Migrator using SQL files in PatientLevelPrediction</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Closing database connection
+<pre><code>Creating migrations table
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Migrations table created
+Executing migration: Migration_1-store_version.sql
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |===================================                                   |  50%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saving migration: Migration_1-store_version.sql
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Migration complete Migration_1-store_version.sql
+Closing database connection
 Updating version number</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -655,42 +1190,97 @@ Updating version number</code></pre>
   |======================================================================| 100%</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Inserting result @ /home/egill/github/Tutorial-PLP/exampleCode/results/strategus/work/PatientLevelPredictionModule/Analysis_1/plpResult into database
+<pre><code>Inserting result @ ./results/strategus/work/PatientLevelPredictionModule/Analysis_1/plpResult into database
 result loaded</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>TAR exists
-tarId: 1
-json in jsons:TRUE
-Cohort Target exists in cohort_definition with cohort id1
-Cohort Target exists in cohorts with cohort id1
-tId: 1
-json in jsons:TRUE
-Cohort Outcome exists in cohort_definition with cohort id2
-Cohort Outcome exists in cohorts with cohort id2
-oId: 2
-Population settings exists
-popSetId: 1
-Covariate setting exists
-covSetId: 1
-Model setting exists
-modSetId: 1
-Split setting exists
-plpDataSetId: 1
-feature engineering setting exists
-FESetId: 1
-sample setting exists
-sampleSetId: 1
-tidy covariates setting exists
-tidySetId: 1
-Split setting exists
-splitId: 1
-modelDesignId: 1
-Database meta data  already exists
+<pre><code>Adding TAR
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tarId: 1
+Adding cohort Target</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adding cohort Target</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tId: 1
+Adding cohort Outcome</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adding cohort Outcome</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>oId: 2
+Adding new population settings</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>popSetId: 1
+Adding new covariate settings</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>covSetId: 1
+Adding new model settings</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>modSetId: 1
+Adding new plp data settings</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>plpDataSetId: 1
+Adding new feature_engineering settings</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>FESetId: 1
+Adding new sample settings</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sampleSetId: 1
+Adding new tidy covariates settings</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tidySetId: 1
+Adding new split settings</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>splitId: 1
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>modelDesignId: 1
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Database meta data  already exists
 Database1 already exists
-Database meta data  already exists
-Database1 already exists
-modelId: 1 inserted for modelDesignId 1and databaseId 1
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>modelId: 1 inserted for modelDesignId 1and databaseId 1
 TAR exists
 json in jsons:TRUE
 Cohort Target exists in cohort_definition with cohort id1
@@ -701,7 +1291,6 @@ Cohort Outcome exists in cohorts with cohort id2
 Population settings exists
 Split setting exists
 Inserting performance...
-performanceId: 1
 
   |                                                                            
   |                                                                      |   0%
@@ -709,73 +1298,32 @@ performanceId: 1
   |======================================================================| 100%</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Inserting attrition for performance 1</code></pre>
+<pre><code>performanceId: 1
+Inserting attrition for performance 1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Adding PredictionDistribution
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Inserting predictionDistribution for performance 1</code></pre>
+Inserting predictionDistribution for performance 1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Adding ThresholdSummary
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Inserting thresholdSummary for performance 1</code></pre>
+Inserting thresholdSummary for performance 1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Adding EvaluationStatistics
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Inserting evaluationSummary for performance 1</code></pre>
+Inserting evaluationSummary for performance 1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Adding CalibrationSummary
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Inserting calibrationSummary for performance 1</code></pre>
+Inserting calibrationSummary for performance 1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Adding DemographicSummary
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Inserting demographicSummary for performance 1</code></pre>
+Inserting demographicSummary for performance 1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Restricting to covariates included in model
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Inserting covariateSummary for result 1</code></pre>
+Inserting covariateSummary for result 1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>TAR exists
@@ -807,8 +1355,6 @@ splitId: 1
 modelDesignId: 1
 Database meta data  already exists
 Database1 already exists
-diagnosticId: 1
-Adding DiagnosticSummary
 
   |                                                                            
   |                                                                      |   0%
@@ -816,28 +1362,17 @@ Adding DiagnosticSummary
   |======================================================================| 100%</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Adding DiagnosticParticipants
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
+<pre><code>diagnosticId: 1
+Adding DiagnosticSummary</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Adding DiagnosticPredictors
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
+<pre><code>Adding DiagnosticParticipants</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Adding DiagnosticOutcomes
-
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
+<pre><code>Adding DiagnosticPredictors</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adding DiagnosticOutcomes</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Adding DiagnosticDesigns</code></pre>
@@ -849,8 +1384,8 @@ Adding DiagnosticSummary
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>analysisLocation <span class="ot">&lt;-</span> <span class="fu">file.path</span>(workFolder, <span class="st">"PatientLevelPredictionModule"</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>PatientLevelPrediction<span class="sc">::</span><span class="fu">viewMultiplePlp</span>(analysisLocation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>analysisLocation <span class="ot">&lt;-</span> <span class="fu">file.path</span>(workFolder, <span class="st">"PatientLevelPredictionModule"</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>PatientLevelPrediction<span class="sc">::</span><span class="fu">viewMultiplePlp</span>(analysisLocation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
