@@ -15,6 +15,9 @@ execute:
 
 # Overview
 
+::: {.panel-tabset}
+
+### Goals
 This document shows how to:
 
 * Load cohort JSONs and generate cohorts using `CohortGenerator`.
@@ -22,16 +25,43 @@ This document shows how to:
 * Assemble `Strategus` analysis specifications
 * Execute the analysis specifications against a DuckDB Synthea example database.
 
-This is the tutorial reference. To run the tutorial we recommend using the R file [here]("networkStudy.R") which contains the same code but is easier to run and modify step-by-step.
+### Workflow
+```{mermaid}
+flowchart LR
+    A[Cohort JSONs] --> B(Cohort Generator)
+    B --> C(Shared Resources)
+    C --> D(Strategus Specs)
+    D --> E(Execution Settings)
+    E --> F[Results Review]
+```
+
+:::
+
+This is the tutorial reference. To run the tutorial we recommend using the R file [here](https://github.com/OHDSI/Tutorial-PLP/blob/tutorial-code/exampleCode/networkStudy.R) which contains the same code but is easier to run and modify step-by-step.
 
 
 # Setup
 
-Here we need to set up our environment. First, if you don't have R installed please follow the HADES installation instructions  for your operating system from [here](https://ohdsi.github.io/Hades/articles/rSetup.html).
+::: {.panel-tabset}
 
-Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are `PatientLevelPrediction`, `CohortGenerator`, `CirceR`, and `Strategus`. Also to use the example database you need to install `duckdb`. Since `Strategus` is still under development you need to install it from github which requires the `remotes` package.
+### Steps
+Here we need to set up our environment.
 
-Further for viewing the results you will need `OHDSIShinyAppBuilder` and `OhdsiShinyModules` the latter on github.
+::: {.callout-tip}
+## Prerequisites
+- [ ] If you don't have R installed please follow the HADES installation instructions for your operating system from [here](https://ohdsi.github.io/Hades/articles/rSetup.html).
+- [ ] Usually to run OHDSI packages you need to install at least R, java and a github account (to install packages from github without rate-limiting).
+- [ ] Once you have that set up you can install the required packages for this tutorial. They are `PatientLevelPrediction`, `CohortGenerator`, `CirceR`, and `Strategus`.
+- [ ] Also to use the example database you need to install `duckdb`. Since `Strategus` is still under development you need to install it from github which requires the `remotes` package.
+- [ ] Further for viewing the results you will need `OHDSIShinyAppBuilder` and `OhdsiShinyModules` the latter on github.
+:::
+
+::: {.callout-note}
+## Example Data
+Further please download the example database from [here](https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb) and place in your location of choice. Then update the `dbPath` variable to point to that location.
+:::
+
+### R Code
 ```{r}
 #| label: setup
 # Install required packages (uncomment if needed):
@@ -45,13 +75,9 @@ library(Strategus)
 seed <- 42
 ```
 
-Further please download the example database from [here](https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb) and place in your location of choice. Then update the `dbPath` variable to point to that location:
-
 ```{r}
 dbPath <- "~/database/database-1M_filtered.duckdb"
 ```
-
-Here are the schema settings and cohort_table name for the example database. If you would run the example for your own database you would need to update these settings.
 
 ```{r}
 cdmSchema <- "main"
@@ -59,11 +85,23 @@ workSchema <- "cohorts"
 cohortTable <- "cohort_table"
 ```
 
+:::
+
 # Cohort Generation
 
-To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from [here](https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts). You can open each file and press download. Then save it somewhere locally and update the paths below to point to the location where you saved them.
+::: {.panel-tabset}
 
+### Steps
+To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation.
 
+::: {.callout-warning}
+## Cohort JSONs
+- [ ] Download the JSON files from [here](https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts).
+- [ ] Open each file and press download.
+- [ ] Save them somewhere locally and update the paths below to point to the location where you saved them.
+:::
+
+### R Code
 ```{r} 
 #| label: cohort-generation
 targetFile <- "./cohorts/31_[T] Pandemic Prediction new target.json"
@@ -91,7 +129,22 @@ cohortGeneratorModuleSpecifications <- cohortGeneratorModule$createModuleSpecifi
 )
 ```
 
+:::
+
 # PLP Design
+
+::: {.panel-tabset}
+
+### Steps
+This section configures the PLP design by defining covariates, population settings, preprocessing, data splits, and the baseline model choice.
+
+::: {.callout-tip}
+## Model Variations
+- [ ] Use the baseline `setLassoLogisticRegression` call to reproduce the tutorial results.
+- [ ] Swap to the alternative model options listed in the code comments when you are ready to experiment.
+:::
+
+### R Code
 ```{r}
 #| label: plp-design
 
@@ -137,8 +190,21 @@ plpModule <- PatientLevelPredictionModule$new()
 plpModuleSpecs <- plpModule$createModuleSpecifications(modelDesignList = modelDesign)
 ```
 
+:::
+
 # Strategus Analysis Specifications
 
+::: {.panel-tabset}
+
+### Steps
+With the cohort and PLP modules ready, assemble the Strategus analysis specifications and persist them for execution.
+
+::: {.callout-note}
+## Output Artifact
+- [ ] `analysisSpecifications.json` captures the combined resources and module settings needed for execution.
+:::
+
+### R Code
 ```{r} 
 #| label: analysis-specs
 
@@ -150,7 +216,23 @@ analysisSpecifications <- createEmptyAnalysisSpecifications() |>
 ParallelLogger::saveSettingsToJson(analysisSpecifications, "analysisSpecifications.json")
 ```
 
+:::
+
 # Execution settings and running
+
+::: {.panel-tabset}
+
+### Steps
+Create the execution settings, point Strategus to your DuckDB database, and then run the analysis.
+
+::: {.callout-warning}
+## Before You Run
+- [ ] Confirm the work and results directories exist or can be created by Strategus.
+- [ ] Make sure the DuckDB file path is correct and accessible.
+- [ ] Expect execution to take a few minutes depending on data size.
+:::
+
+### R Code
 ```{r}
 #| label: execute
 workFolder <- normalizePath("./results/strategus/work")
@@ -178,11 +260,17 @@ Strategus::execute(
 )
 ```
 
+:::
+
 # View Results
+
+::: {.callout-note collapse="true"}
+## Interactive Review
+Use the PLP viewer to inspect the results produced by the execution step. Expand this panel when you are ready to launch the shiny viewer.
 
 ```{r, eval=FALSE}
 analysisLocation <- file.path(workFolder, "PatientLevelPredictionModule")
 PatientLevelPrediction::viewMultiplePlp(analysisLocation)
 
 ```
-
+:::
