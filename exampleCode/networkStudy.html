@@ -195,28 +195,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
 <p>Here we need to set up our environment. First, if you don’t have R installed please follow the HADES installation instructions for your operating system from <a href="https://ohdsi.github.io/Hades/articles/rSetup.html">here</a>.</p>
-<p>Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are <code>PatientLevelPrediction</code>, <code>CohortGenerator</code> and <code>Strategus</code>. Also to use the example database you need to install <code>duckdb</code>. Since <code>Strategus</code> is still under development you need to install it from github which requires the <code>remotes</code> package.</p>
+<p>Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are <code>PatientLevelPrediction</code>, <code>CohortGenerator</code>, <code>CirceR</code>, and <code>Strategus</code>. Also to use the example database you need to install <code>duckdb</code>. Since <code>Strategus</code> is still under development you need to install it from github which requires the <code>remotes</code> package.</p>
+<p>Further for viewing the results you will need <code>OHDSIShinyAppBuilder</code> and <code>OhdsiShinyModules</code> the latter on github.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install required packages (uncomment if needed):</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("PatientLevelPrediction", "CohortGenerator", "remotes", "duckdb"))</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("PatientLevelPrediction", "CohortGenerator", "CirceR", "remotes", "duckdb", "OHDSIShinyAppBuilder"))</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_github("OHDSI/Strategus")</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PatientLevelPrediction)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Strategus)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">42</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_github("OHDSI/OhdsiShinyModules"))</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PatientLevelPrediction)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Strategus)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">42</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Further please download the example database from <a href="https://drive.google.com/file/d/1l5wq57fAslnoFR2umFQvVZbDiq5IK0UF/">here</a> and place in your location of choice. Then update the dbPath cariable to point to that location:</p>
+<p>Further please download the example database from <a href="https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb">here</a> and place in your location of choice. Then update the <code>dbPath</code> variable to point to that location:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dbPath <span class="ot">&lt;-</span> <span class="st">"~/database/database-1M_filtered.duckdb"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Here are the schema settings and cohort_table name for the example database. If you would run tthe example for your own database you would need to update these settings.</p>
+<p>Here are the schema settings and cohort_table name for the example database. If you would run the example for your own database you would need to update these settings.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -624,7 +626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   |======================================================================| 100%</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Generating cohort set took 1.83 secs</code></pre>
+<pre><code>Generating cohort set took 1.78 secs</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cdmDatabaseId is not a string - this will cause issues when inserting into a result database so casting it
@@ -929,7 +931,7 @@ Adding DiagnosticSummary
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/OHDSI\.github\.io\/Tutorial-PLP\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
