@@ -27,13 +27,15 @@ This document shows how to:
 
 Here we need to set up our environment. First, if you don't have R installed please follow the HADES installation instructions  for your operating system from [here](https://ohdsi.github.io/Hades/articles/rSetup.html).
 
-Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are `PatientLevelPrediction`, `CohortGenerator` and `Strategus`. Also to use the example database you need to install `duckdb`. Since `Strategus` is still under development you need to install it from github which requires the `remotes` package.
+Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are `PatientLevelPrediction`, `CohortGenerator`, `CirceR`, and `Strategus`. Also to use the example database you need to install `duckdb`. Since `Strategus` is still under development you need to install it from github which requires the `remotes` package.
 
+Further for viewing the results you will need `OHDSIShinyAppBuilder` and `OhdsiShinyModules` the latter on github.
 ```{r}
 #| label: setup
 # Install required packages (uncomment if needed):
-# install.packages(c("PatientLevelPrediction", "CohortGenerator", "remotes", "duckdb"))
+# install.packages(c("PatientLevelPrediction", "CohortGenerator", "CirceR", "remotes", "duckdb", "OHDSIShinyAppBuilder"))
 # remotes::install_github("OHDSI/Strategus")
+# remotes::install_github("OHDSI/OhdsiShinyModules"))
 
 library(PatientLevelPrediction)
 library(Strategus)
@@ -176,7 +178,7 @@ Strategus::execute(
 
 # View Results
 
-```{r}
+```{r, eval=FALSE}
 analysisLocation <- file.path(workFolder, "PatientLevelPredictionModule")
 PatientLevelPrediction::viewMultiplePlp(analysisLocation)
 
