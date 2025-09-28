@@ -43,13 +43,13 @@ library(Strategus)
 seed <- 42
 ```
 
-Further please download the example database from [here](https://drive.google.com/file/d/1l5wq57fAslnoFR2umFQvVZbDiq5IK0UF/) and place in your location of choice. Then update the dbPath cariable to point to that location:
+Further please download the example database from [here](https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb) and place in your location of choice. Then update the `dbPath` variable to point to that location:
 
 ```{r}
 dbPath <- "~/database/database-1M_filtered.duckdb"
 ```
 
-Here are the schema settings and cohort_table name for the example database. If you would run tthe example for your own database you would need to update these settings.
+Here are the schema settings and cohort_table name for the example database. If you would run the example for your own database you would need to update these settings.
 
 ```{r}
 cdmSchema <- "main"
