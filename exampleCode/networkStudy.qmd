@@ -6,6 +6,10 @@ format:
     toc-depth: 3
     number-sections: true
     code-fold: show
+    respect-user-color-scheme: true
+    theme:
+      light: litera
+      dark: darkly
 execute:
   echo: true
   warning: false
@@ -27,11 +31,22 @@ This is the tutorial reference. To run the tutorial we recommend using the R fil
 
 # Setup
 
-Here we need to set up our environment. First, if you don't have R installed please follow the HADES installation instructions  for your operating system from [here](https://ohdsi.github.io/Hades/articles/rSetup.html).
+Here we need to set up our environment.
 
-Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are `PatientLevelPrediction`, `CohortGenerator`, `CirceR`, and `Strategus`. Also to use the example database you need to install `duckdb`. Since `Strategus` is still under development you need to install it from github which requires the `remotes` package.
+::: {.callout-tip}
+## Prerequisites
+- [ ] If you don't have R installed please follow the HADES installation instructions for your operating system from [here](https://ohdsi.github.io/Hades/articles/rSetup.html).
+- [ ] Usually to run OHDSI packages you need to install at least R, java and a github account (to install packages from github without rate-limiting).
+- [ ] Once you have that set up you can install the required packages for this tutorial. They are `PatientLevelPrediction`, `CohortGenerator`, `CirceR`, and `Strategus`.
+- [ ] Also to use the example database you need to install `duckdb`. Since `Strategus` is still under development you need to install it from github which requires the `remotes` package.
+- [ ] Further for viewing the results you will need `OHDSIShinyAppBuilder` and `OhdsiShinyModules` the latter on github.
+:::
 
-Further for viewing the results you will need `OHDSIShinyAppBuilder` and `OhdsiShinyModules` the latter on github.
+::: {.callout-note}
+## Example Data
+Further please download the example database from [here](https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb) and place in your location of choice. Then update the `dbPath` variable to point to that location. Note that the database is just over 4GB so it may take a while to download. During the tutorial it will be available from a usb stick.
+:::
+
 ```{r}
 #| label: setup
 # Install required packages (uncomment if needed):
@@ -45,13 +60,9 @@ library(Strategus)
 seed <- 42
 ```
 
-Further please download the example database from [here](https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb) and place in your location of choice. Then update the `dbPath` variable to point to that location:
-
 ```{r}
 dbPath <- "~/database/database-1M_filtered.duckdb"
 ```
-
-Here are the schema settings and cohort_table name for the example database. If you would run the example for your own database you would need to update these settings.
 
 ```{r}
 cdmSchema <- "main"
@@ -61,15 +72,22 @@ cohortTable <- "cohort_table"
 
 # Cohort Generation
 
-To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from [here](https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts). You can open each file and press download. Then save it somewhere locally and update the paths below to point to the location where you saved them.
+To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation.
 
+::: {.callout-note}
+## Cohort JSONs
+- [ ] Download the JSON files from [here](https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts).
+- [ ] Open each file and press download.
+- [ ] Save them somewhere locally and update the paths below to point to the location where you saved them.
+:::
 
 ```{r} 
 #| label: cohort-generation
-targetFile <- "./cohorts/31_[T] Pandemic Prediction new target.json"
-outcomeFile <- "./cohorts/14_[O] Pandemic Prediction outcome pneumonia in hospital.json"
+#| code-annotations: true
+targetFile <- "./cohorts/31_[T] Pandemic Prediction new target.json"                     # <1>
+outcomeFile <- "./cohorts/14_[O] Pandemic Prediction outcome pneumonia in hospital.json" # <1>
 
-cohortDefinitions <- CohortGenerator::createEmptyCohortDefinitionSet()
+cohortDefinitions <- CohortGenerator::createEmptyCohortDefinitionSet()                     # <2>
 cohortDefinitions[1, ] <- list(
   cohortId = 1,
   cohortName = "Target",
@@ -83,19 +101,34 @@ cohortDefinitions[2, ] <- list(
   json = readChar(outcomeFile, file.info(outcomeFile)$size)
 )
 
-cohortGeneratorModule <- CohortGeneratorModule$new()
-cohortDefShared <- cohortGeneratorModule$createCohortSharedResourceSpecifications(cohortDefinitions)
+cohortGeneratorModule <- CohortGeneratorModule$new()                                       # <3>
+cohortDefShared <- cohortGeneratorModule$createCohortSharedResourceSpecifications(cohortDefinitions) # <3>
 
 cohortGeneratorModuleSpecifications <- cohortGeneratorModule$createModuleSpecifications(
   generateStats = TRUE
-)
+)                                                                                            # <4>
 ```
 
+1. Point Strategus at the target and outcome cohort JSON files.
+2. Load the cohort definitions into a Strategus-ready set.
+3. Create shared resources so other modules can reuse the cohorts.
+4. Create the cohort generation module specifications.
+
 # PLP Design
+
+This section configures the PLP design by defining covariates, population settings, preprocessing, data splits, and the baseline model choice.
+
+::: {.callout-tip}
+## Model Variations
+- [ ] Use the baseline `setLassoLogisticRegression` call to reproduce the tutorial results.
+- [ ] Swap to the alternative model options listed in the code comments when you are ready to experiment.
+:::
+
 ```{r}
 #| label: plp-design
+#| code-annotations: true
 
-covariateSettings <- FeatureExtraction::createDefaultCovariateSettings()
+covariateSettings <- FeatureExtraction::createDefaultCovariateSettings()                      # <1>
 
 populationSettings <- createStudyPopulationSettings(
   binary = TRUE,
@@ -103,22 +136,21 @@ populationSettings <- createStudyPopulationSettings(
   requireTimeAtRisk = FALSE,
   riskWindowStart = 1,
   riskWindowEnd = 30,
-)
+)                                                                                           # <2>
 
 preprocessSettings <- createPreprocessSettings(
   minFraction = 0.001,
   normalize = TRUE,
   removeRedundancy = TRUE
-)
+)                                                                                           # <3>
 
-splitSettings <- createDefaultSplitSetting(splitSeed = seed)
+splitSettings <- createDefaultSplitSetting(splitSeed = seed)                                   # <4>
 
 # Choose model based on parameter (baseline: lasso logistic)
-modelSettings <- PatientLevelPrediction::setLassoLogisticRegression(seed = seed)
+modelSettings <- PatientLevelPrediction::setLassoLogisticRegression(seed = seed)              # <5>
   # Other options (require additional packages; see Exercises below):
   # PatientLevelPrediction::setGradientBoostingMachine(ntrees = 100, seed = seed),
   # PatientLevelPrediction::setRandomForest(mtries = 10, seed = seed),
-  # PatientLevelPrediction::setXgBoost(nrounds = 100, seed = seed),
 
 message(sprintf("Model selected: %s | Split seed: %s", "LASSO", seed))
 
@@ -131,30 +163,62 @@ modelDesign <- PatientLevelPrediction::createModelDesign(
   modelSettings = modelSettings,
   splitSettings = splitSettings,
   runCovariateSummary = TRUE
-)
+)                                                                                               # <6>
 
 plpModule <- PatientLevelPredictionModule$new()
-plpModuleSpecs <- plpModule$createModuleSpecifications(modelDesignList = modelDesign)
+plpModuleSpecs <- plpModule$createModuleSpecifications(modelDesignList = modelDesign)       # <7>
 ```
+
+1. Generate a broad set of default covariates using FeatureExtraction.
+2. Define cohort eligibility and the time-at-risk window.
+3. Configure preprocessing to normalize features and drop redundancy.
+4. Fix the train/test split seed for reproducibility.
+5. Choose the baseline LASSO logistic regression model (swap here to explore alternatives).
+6. Assemble the pieces into a complete model design.
+7. Wrap the design in a PLP module specification Strategus can execute.
 
 # Strategus Analysis Specifications
 
+With the cohort and PLP modules ready, assemble the Strategus analysis specifications and persist them for execution.
+
+::: {.callout-note}
+## Output Artifact
+- [ ] `analysisSpecifications.json` captures the combined resources and module settings needed for execution. When executing a network study this file is shared with othes sites to execute the study.
+:::
+
 ```{r} 
 #| label: analysis-specs
+#| code-annotations: true
 
-analysisSpecifications <- createEmptyAnalysisSpecifications() |>
-  addSharedResources(cohortDefShared) |>
-  addModuleSpecifications(cohortGeneratorModuleSpecifications) |>
-  addModuleSpecifications(plpModuleSpecs)
+analysisSpecifications <- createEmptyAnalysisSpecifications() |>  # <1>
+  addSharedResources(cohortDefShared) |>                         # <2>
+  addModuleSpecifications(cohortGeneratorModuleSpecifications) |> # <3>
+  addModuleSpecifications(plpModuleSpecs)                        # <3>
 
-ParallelLogger::saveSettingsToJson(analysisSpecifications, "analysisSpecifications.json")
+ParallelLogger::saveSettingsToJson(analysisSpecifications, "analysisSpecifications.json")  # <4>
 ```
 
+1. Start from an empty Strategus analysis scaffold.
+2. Attach the shared cohort definitions required downstream.
+3. Include the cohort generator and PLP modules in the execution plan.
+4. Persist the resulting specification to JSON for reuse or sharing.
+
 # Execution settings and running
+
+Create the execution settings, point Strategus to your DuckDB database, and then run the analysis.
+
+::: {.callout-warning}
+## Before You Run
+- [ ] Confirm the work and results directories exist or can be created by Strategus.
+- [ ] Make sure the DuckDB file path is correct and accessible.
+- [ ] Expect execution to take a few minutes depending on data size.
+:::
+
 ```{r}
 #| label: execute
-workFolder <- normalizePath("./results/strategus/work")
-resultsFolder <- normalizePath("./results/strategus/results")
+#| code-annotations: true
+workFolder <- normalizePath("./results/strategus/work")          # <1>
+resultsFolder <- normalizePath("./results/strategus/results")     # <1>
 
 executionSettings <- Strategus::createCdmExecutionSettings(
   workDatabaseSchema = workSchema,
@@ -163,26 +227,60 @@ executionSettings <- Strategus::createCdmExecutionSettings(
   workFolder = workFolder,
   resultsFolder = resultsFolder,
   incremental = FALSE
-)
+)                                                           # <2>
 
 connectionDetails <- DatabaseConnector::createConnectionDetails(
   dbms = "duckdb",
   server = dbPath
-)
+)                                                           # <3>
 
 # Execute the study (may take some minutes depending on data size)
 Strategus::execute(
   analysisSpecifications,
   executionSettings = executionSettings,
   connectionDetails = connectionDetails
-)
+)                                                           # <4>
 ```
 
+1. Normalize the work and results folder paths so Strategus knows where to write files. Note you will get a warning if the folders do not exist, but they will be created later.
+2. Build execution settings that contain schemas, cohort tables, and output locations.
+3. Supply `connectionDetails` for Strategus to reach your database.
+4. Kick off the Strategus pipeline with the assembled specifications.
+
 # View Results
+
+::: {.callout-note collapse="true"}
+## Interactive Review
+Use the PLP viewer to inspect the results produced by the execution step. Execute these lines when you are ready to launch the shiny viewer.
 
 ```{r, eval=FALSE}
 analysisLocation <- file.path(workFolder, "PatientLevelPredictionModule")
 PatientLevelPrediction::viewMultiplePlp(analysisLocation)
 
 ```
+:::
 
+# Exercises
+
+1. **Model Exploration**: Modify the `modelSettings` in the PLP design section to experiment with different algorithms like Random Forest or XGBoost. Observe how these changes impact model performance metrics.
+
+   ::: {.column-margin}
+   **Environment Setup**
+   ```r
+   # XGBoost
+   install.packages("xgboost")
+   ```
+   ```r
+   # Random Forest via reticulate
+   install.packages("reticulate")
+   reticulate::py_require(packages = c(
+     "scikit-learn", 
+     "numpy", 
+     "scipy")
+   )
+   ```
+   :::
+
+   Pay attention to how more flexible models influence training versus test performance and whether additional tuning is required.
+
+2. **Seed Variation**: Change the `seed` variable to different values and rerun the analysis. Document how the results vary with different seeds, particularly focusing on model stability and performance consistency. What do you think is affecting the variablitiy in our case? 
