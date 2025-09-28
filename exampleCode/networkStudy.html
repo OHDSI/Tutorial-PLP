@@ -72,10 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-578a1abd456fd8451674434bbaf839a3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-392fdda70cb8b0ea7189b90970cddbb9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-4ee805ff7a6cc868b09c26cbab3a1bbc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-392fdda70cb8b0ea7189b90970cddbb9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +111,178 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -137,6 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -157,11 +333,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#strategus-analysis-specifications" id="toc-strategus-analysis-specifications" class="nav-link" data-scroll-target="#strategus-analysis-specifications"><span class="header-section-number">5</span> Strategus Analysis Specifications</a></li>
   <li><a href="#execution-settings-and-running" id="toc-execution-settings-and-running" class="nav-link" data-scroll-target="#execution-settings-and-running"><span class="header-section-number">6</span> Execution settings and running</a></li>
   <li><a href="#view-results" id="toc-view-results" class="nav-link" data-scroll-target="#view-results"><span class="header-section-number">7</span> View Results</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8</span> Exercises</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -195,9 +373,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="setup" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
-<p>Here we need to set up our environment. First, if you don’t have R installed please follow the HADES installation instructions for your operating system from <a href="https://ohdsi.github.io/Hades/articles/rSetup.html">here</a>.</p>
-<p>Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are <code>PatientLevelPrediction</code>, <code>CohortGenerator</code>, <code>CirceR</code>, and <code>Strategus</code>. Also to use the example database you need to install <code>duckdb</code>. Since <code>Strategus</code> is still under development you need to install it from github which requires the <code>remotes</code> package.</p>
-<p>Further for viewing the results you will need <code>OHDSIShinyAppBuilder</code> and <code>OhdsiShinyModules</code> the latter on github.</p>
+<p>Here we need to set up our environment.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Prerequisites
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">If you don’t have R installed please follow the HADES installation instructions for your operating system from <a href="https://ohdsi.github.io/Hades/articles/rSetup.html">here</a>.</label></li>
+<li><label><input type="checkbox">Usually to run OHDSI packages you need to install at least R, java and a github account (to install packages from github without rate-limiting).</label></li>
+<li><label><input type="checkbox">Once you have that set up you can install the required packages for this tutorial. They are <code>PatientLevelPrediction</code>, <code>CohortGenerator</code>, <code>CirceR</code>, and <code>Strategus</code>.</label></li>
+<li><label><input type="checkbox">Also to use the example database you need to install <code>duckdb</code>. Since <code>Strategus</code> is still under development you need to install it from github which requires the <code>remotes</code> package.</label></li>
+<li><label><input type="checkbox">Further for viewing the results you will need <code>OHDSIShinyAppBuilder</code> and <code>OhdsiShinyModules</code> the latter on github.</label></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Example Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Further please download the example database from <a href="https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb">here</a> and place in your location of choice. Then update the <code>dbPath</code> variable to point to that location. Note that the database is just over 4GB so it may take a while to download. During the tutorial it will be available from a usb stick.</p>
+</div>
+</div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -212,14 +420,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">42</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Further please download the example database from <a href="https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb">here</a> and place in your location of choice. Then update the <code>dbPath</code> variable to point to that location:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dbPath <span class="ot">&lt;-</span> <span class="st">"~/database/database-1M_filtered.duckdb"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Here are the schema settings and cohort_table name for the example database. If you would run the example for your own database you would need to update these settings.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -231,127 +437,286 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cohort-generation" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Cohort Generation</h1>
-<p>To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from <a href="https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts">here</a>. You can open each file and press download. Then save it somewhere locally and update the paths below to point to the location where you saved them.</p>
-<div class="cell">
+<p>To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Cohort JSONs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">Download the JSON files from <a href="https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts">here</a>.</label></li>
+<li><label><input type="checkbox">Open each file and press download.</label></li>
+<li><label><input type="checkbox">Save them somewhere locally and update the paths below to point to the location where you saved them.</label></li>
+</ul>
+</div>
+</div>
+<div class="cell" data-code-annotations="true">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>targetFile <span class="ot">&lt;-</span> <span class="st">"./cohorts/31_[T] Pandemic Prediction new target.json"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>outcomeFile <span class="ot">&lt;-</span> <span class="st">"./cohorts/14_[O] Pandemic Prediction outcome pneumonia in hospital.json"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>cohortDefinitions <span class="ot">&lt;-</span> CohortGenerator<span class="sc">::</span><span class="fu">createEmptyCohortDefinitionSet</span>()</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>cohortDefinitions[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortId =</span> <span class="dv">1</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortName =</span> <span class="st">"Target"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sql =</span> <span class="st">""</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">json =</span> <span class="fu">readChar</span>(targetFile, <span class="fu">file.info</span>(targetFile)<span class="sc">$</span>size)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>cohortDefinitions[<span class="dv">2</span>, ] <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortId =</span> <span class="dv">2</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortName =</span> <span class="st">"Outcome"</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">sql =</span> <span class="st">"empty"</span>,</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">json =</span> <span class="fu">readChar</span>(outcomeFile, <span class="fu">file.info</span>(outcomeFile)<span class="sc">$</span>size)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>cohortGeneratorModule <span class="ot">&lt;-</span> CohortGeneratorModule<span class="sc">$</span><span class="fu">new</span>()</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>cohortDefShared <span class="ot">&lt;-</span> cohortGeneratorModule<span class="sc">$</span><span class="fu">createCohortSharedResourceSpecifications</span>(cohortDefinitions)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>cohortGeneratorModuleSpecifications <span class="ot">&lt;-</span> cohortGeneratorModule<span class="sc">$</span><span class="fu">createModuleSpecifications</span>(</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">generateStats =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>targetFile <span class="ot">&lt;-</span> <span class="st">"./cohorts/31_[T] Pandemic Prediction new target.json"</span></span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>outcomeFile <span class="ot">&lt;-</span> <span class="st">"./cohorts/14_[O] Pandemic Prediction outcome pneumonia in hospital.json"</span></span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>cohortDefinitions <span class="ot">&lt;-</span> CohortGenerator<span class="sc">::</span><span class="fu">createEmptyCohortDefinitionSet</span>()</span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>cohortDefinitions[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="annotated-cell-4-6"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortId =</span> <span class="dv">1</span>,</span>
+<span id="annotated-cell-4-7"><a href="#annotated-cell-4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortName =</span> <span class="st">"Target"</span>,</span>
+<span id="annotated-cell-4-8"><a href="#annotated-cell-4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sql =</span> <span class="st">""</span>,</span>
+<span id="annotated-cell-4-9"><a href="#annotated-cell-4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">json =</span> <span class="fu">readChar</span>(targetFile, <span class="fu">file.info</span>(targetFile)<span class="sc">$</span>size)</span>
+<span id="annotated-cell-4-10"><a href="#annotated-cell-4-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="annotated-cell-4-11"><a href="#annotated-cell-4-11" aria-hidden="true" tabindex="-1"></a>cohortDefinitions[<span class="dv">2</span>, ] <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="annotated-cell-4-12"><a href="#annotated-cell-4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortId =</span> <span class="dv">2</span>,</span>
+<span id="annotated-cell-4-13"><a href="#annotated-cell-4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortName =</span> <span class="st">"Outcome"</span>,</span>
+<span id="annotated-cell-4-14"><a href="#annotated-cell-4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">sql =</span> <span class="st">"empty"</span>,</span>
+<span id="annotated-cell-4-15"><a href="#annotated-cell-4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">json =</span> <span class="fu">readChar</span>(outcomeFile, <span class="fu">file.info</span>(outcomeFile)<span class="sc">$</span>size)</span>
+<span id="annotated-cell-4-16"><a href="#annotated-cell-4-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="annotated-cell-4-17"><a href="#annotated-cell-4-17" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-18" class="code-annotation-target"><a href="#annotated-cell-4-18" aria-hidden="true" tabindex="-1"></a>cohortGeneratorModule <span class="ot">&lt;-</span> CohortGeneratorModule<span class="sc">$</span><span class="fu">new</span>()</span>
+<span id="annotated-cell-4-19"><a href="#annotated-cell-4-19" aria-hidden="true" tabindex="-1"></a>cohortDefShared <span class="ot">&lt;-</span> cohortGeneratorModule<span class="sc">$</span><span class="fu">createCohortSharedResourceSpecifications</span>(cohortDefinitions)</span>
+<span id="annotated-cell-4-20"><a href="#annotated-cell-4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-21"><a href="#annotated-cell-4-21" aria-hidden="true" tabindex="-1"></a>cohortGeneratorModuleSpecifications <span class="ot">&lt;-</span> cohortGeneratorModule<span class="sc">$</span><span class="fu">createModuleSpecifications</span>(</span>
+<span id="annotated-cell-4-22"><a href="#annotated-cell-4-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">generateStats =</span> <span class="cn">TRUE</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-4-23" class="code-annotation-target"><a href="#annotated-cell-4-23" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1,2" data-code-annotation="1">Point Strategus at the target and outcome cohort JSON files.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="4" data-code-annotation="2">Load the cohort definitions into a Strategus-ready set.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="18,19" data-code-annotation="3">Create shared resources so other modules can reuse the cohorts.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="23" data-code-annotation="4">Create the cohort generation module specifications.</span>
+</dd>
+</dl>
+</div>
 </div>
 </section>
 <section id="plp-design" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> PLP Design</h1>
-<div class="cell">
+<p>This section configures the PLP design by defining covariates, population settings, preprocessing, data splits, and the baseline model choice.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Model Variations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">Use the baseline <code>setLassoLogisticRegression</code> call to reproduce the tutorial results.</label></li>
+<li><label><input type="checkbox">Swap to the alternative model options listed in the code comments when you are ready to experiment.</label></li>
+</ul>
+</div>
+</div>
+<div class="cell" data-code-annotations="true">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>covariateSettings <span class="ot">&lt;-</span> FeatureExtraction<span class="sc">::</span><span class="fu">createDefaultCovariateSettings</span>()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>populationSettings <span class="ot">&lt;-</span> <span class="fu">createStudyPopulationSettings</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">binary =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">removeSubjectsWithPriorOutcome =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">requireTimeAtRisk =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">riskWindowStart =</span> <span class="dv">1</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">riskWindowEnd =</span> <span class="dv">30</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>preprocessSettings <span class="ot">&lt;-</span> <span class="fu">createPreprocessSettings</span>(</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">minFraction =</span> <span class="fl">0.001</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">removeRedundancy =</span> <span class="cn">TRUE</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>splitSettings <span class="ot">&lt;-</span> <span class="fu">createDefaultSplitSetting</span>(<span class="at">splitSeed =</span> seed)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose model based on parameter (baseline: lasso logistic)</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>modelSettings <span class="ot">&lt;-</span> PatientLevelPrediction<span class="sc">::</span><span class="fu">setLassoLogisticRegression</span>(<span class="at">seed =</span> seed)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other options (require additional packages; see Exercises below):</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># PatientLevelPrediction::setGradientBoostingMachine(ntrees = 100, seed = seed),</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># PatientLevelPrediction::setRandomForest(mtries = 10, seed = seed),</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># PatientLevelPrediction::setXgBoost(nrounds = 100, seed = seed),</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="fu">sprintf</span>(<span class="st">"Model selected: %s | Split seed: %s"</span>, <span class="st">"LASSO"</span>, seed))</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>modelDesign <span class="ot">&lt;-</span> PatientLevelPrediction<span class="sc">::</span><span class="fu">createModelDesign</span>(</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">targetId =</span> <span class="dv">1</span>,</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcomeId =</span> <span class="dv">2</span>,</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">populationSettings =</span> populationSettings,</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">covariateSettings =</span> covariateSettings,</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">preprocessSettings =</span> preprocessSettings,</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelSettings =</span> modelSettings,</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">splitSettings =</span> splitSettings,</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">runCovariateSummary =</span> <span class="cn">TRUE</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>plpModule <span class="ot">&lt;-</span> PatientLevelPredictionModule<span class="sc">$</span><span class="fu">new</span>()</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>plpModuleSpecs <span class="ot">&lt;-</span> plpModule<span class="sc">$</span><span class="fu">createModuleSpecifications</span>(<span class="at">modelDesignList =</span> modelDesign)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>covariateSettings <span class="ot">&lt;-</span> FeatureExtraction<span class="sc">::</span><span class="fu">createDefaultCovariateSettings</span>()</span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>populationSettings <span class="ot">&lt;-</span> <span class="fu">createStudyPopulationSettings</span>(</span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">binary =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">removeSubjectsWithPriorOutcome =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">requireTimeAtRisk =</span> <span class="cn">FALSE</span>,</span>
+<span id="annotated-cell-5-7"><a href="#annotated-cell-5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">riskWindowStart =</span> <span class="dv">1</span>,</span>
+<span id="annotated-cell-5-8"><a href="#annotated-cell-5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">riskWindowEnd =</span> <span class="dv">30</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-9" class="code-annotation-target"><a href="#annotated-cell-5-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="annotated-cell-5-10"><a href="#annotated-cell-5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-5-11"><a href="#annotated-cell-5-11" aria-hidden="true" tabindex="-1"></a>preprocessSettings <span class="ot">&lt;-</span> <span class="fu">createPreprocessSettings</span>(</span>
+<span id="annotated-cell-5-12"><a href="#annotated-cell-5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">minFraction =</span> <span class="fl">0.001</span>,</span>
+<span id="annotated-cell-5-13"><a href="#annotated-cell-5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-5-14"><a href="#annotated-cell-5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">removeRedundancy =</span> <span class="cn">TRUE</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-15" class="code-annotation-target"><a href="#annotated-cell-5-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="annotated-cell-5-16"><a href="#annotated-cell-5-16" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-17" class="code-annotation-target"><a href="#annotated-cell-5-17" aria-hidden="true" tabindex="-1"></a>splitSettings <span class="ot">&lt;-</span> <span class="fu">createDefaultSplitSetting</span>(<span class="at">splitSeed =</span> seed)</span>
+<span id="annotated-cell-5-18"><a href="#annotated-cell-5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-5-19"><a href="#annotated-cell-5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose model based on parameter (baseline: lasso logistic)</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-20" class="code-annotation-target"><a href="#annotated-cell-5-20" aria-hidden="true" tabindex="-1"></a>modelSettings <span class="ot">&lt;-</span> PatientLevelPrediction<span class="sc">::</span><span class="fu">setLassoLogisticRegression</span>(<span class="at">seed =</span> seed)</span>
+<span id="annotated-cell-5-21"><a href="#annotated-cell-5-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other options (require additional packages; see Exercises below):</span></span>
+<span id="annotated-cell-5-22"><a href="#annotated-cell-5-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># PatientLevelPrediction::setGradientBoostingMachine(ntrees = 100, seed = seed),</span></span>
+<span id="annotated-cell-5-23"><a href="#annotated-cell-5-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># PatientLevelPrediction::setRandomForest(mtries = 10, seed = seed),</span></span>
+<span id="annotated-cell-5-24"><a href="#annotated-cell-5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-5-25"><a href="#annotated-cell-5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="fu">sprintf</span>(<span class="st">"Model selected: %s | Split seed: %s"</span>, <span class="st">"LASSO"</span>, seed))</span>
+<span id="annotated-cell-5-26"><a href="#annotated-cell-5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-5-27"><a href="#annotated-cell-5-27" aria-hidden="true" tabindex="-1"></a>modelDesign <span class="ot">&lt;-</span> PatientLevelPrediction<span class="sc">::</span><span class="fu">createModelDesign</span>(</span>
+<span id="annotated-cell-5-28"><a href="#annotated-cell-5-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">targetId =</span> <span class="dv">1</span>,</span>
+<span id="annotated-cell-5-29"><a href="#annotated-cell-5-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcomeId =</span> <span class="dv">2</span>,</span>
+<span id="annotated-cell-5-30"><a href="#annotated-cell-5-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">populationSettings =</span> populationSettings,</span>
+<span id="annotated-cell-5-31"><a href="#annotated-cell-5-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">covariateSettings =</span> covariateSettings,</span>
+<span id="annotated-cell-5-32"><a href="#annotated-cell-5-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">preprocessSettings =</span> preprocessSettings,</span>
+<span id="annotated-cell-5-33"><a href="#annotated-cell-5-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelSettings =</span> modelSettings,</span>
+<span id="annotated-cell-5-34"><a href="#annotated-cell-5-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">splitSettings =</span> splitSettings,</span>
+<span id="annotated-cell-5-35"><a href="#annotated-cell-5-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">runCovariateSummary =</span> <span class="cn">TRUE</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-5-36" class="code-annotation-target"><a href="#annotated-cell-5-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="annotated-cell-5-37"><a href="#annotated-cell-5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-5-38"><a href="#annotated-cell-5-38" aria-hidden="true" tabindex="-1"></a>plpModule <span class="ot">&lt;-</span> PatientLevelPredictionModule<span class="sc">$</span><span class="fu">new</span>()</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="7" onclick="event.preventDefault();">7</a><span id="annotated-cell-5-39" class="code-annotation-target"><a href="#annotated-cell-5-39" aria-hidden="true" tabindex="-1"></a>plpModuleSpecs <span class="ot">&lt;-</span> plpModule<span class="sc">$</span><span class="fu">createModuleSpecifications</span>(<span class="at">modelDesignList =</span> modelDesign)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">Generate a broad set of default covariates using FeatureExtraction.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="9" data-code-annotation="2">Define cohort eligibility and the time-at-risk window.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="15" data-code-annotation="3">Configure preprocessing to normalize features and drop redundancy.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="17" data-code-annotation="4">Fix the train/test split seed for reproducibility.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="20" data-code-annotation="5">Choose the baseline LASSO logistic regression model (swap here to explore alternatives).</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="36" data-code-annotation="6">Assemble the pieces into a complete model design.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="39" data-code-annotation="7">Wrap the design in a PLP module specification Strategus can execute.</span>
+</dd>
+</dl>
+</div>
 </div>
 </section>
 <section id="strategus-analysis-specifications" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Strategus Analysis Specifications</h1>
-<div class="cell">
+<p>With the cohort and PLP modules ready, assemble the Strategus analysis specifications and persist them for execution.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Output Artifact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox"><code>analysisSpecifications.json</code> captures the combined resources and module settings needed for execution. When executing a network study this file is shared with othes sites to execute the study.</label></li>
+</ul>
+</div>
+</div>
+<div class="cell" data-code-annotations="true">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>analysisSpecifications <span class="ot">&lt;-</span> <span class="fu">createEmptyAnalysisSpecifications</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addSharedResources</span>(cohortDefShared) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addModuleSpecifications</span>(cohortGeneratorModuleSpecifications) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addModuleSpecifications</span>(plpModuleSpecs)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ParallelLogger<span class="sc">::</span><span class="fu">saveSettingsToJson</span>(analysisSpecifications, <span class="st">"analysisSpecifications.json"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>analysisSpecifications <span class="ot">&lt;-</span> <span class="fu">createEmptyAnalysisSpecifications</span>() <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addSharedResources</span>(cohortDefShared) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addModuleSpecifications</span>(cohortGeneratorModuleSpecifications) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-6-4"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addModuleSpecifications</span>(plpModuleSpecs)</span>
+<span id="annotated-cell-6-5"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-6-6" class="code-annotation-target"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a>ParallelLogger<span class="sc">::</span><span class="fu">saveSettingsToJson</span>(analysisSpecifications, <span class="st">"analysisSpecifications.json"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="1" data-code-annotation="1">Start from an empty Strategus analysis scaffold.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="2">Attach the shared cohort definitions required downstream.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="3,4" data-code-annotation="3">Include the cohort generator and PLP modules in the execution plan.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="6" data-code-annotation="4">Persist the resulting specification to JSON for reuse or sharing.</span>
+</dd>
+</dl>
+</div>
 </div>
 </section>
 <section id="execution-settings-and-running" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Execution settings and running</h1>
-<div class="cell">
+<p>Create the execution settings, point Strategus to your DuckDB database, and then run the analysis.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Before You Run
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">Confirm the work and results directories exist or can be created by Strategus.</label></li>
+<li><label><input type="checkbox">Make sure the DuckDB file path is correct and accessible.</label></li>
+<li><label><input type="checkbox">Expect execution to take a few minutes depending on data size.</label></li>
+</ul>
+</div>
+</div>
+<div class="cell" data-code-annotations="true">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>workFolder <span class="ot">&lt;-</span> <span class="fu">normalizePath</span>(<span class="st">"./results/strategus/work"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>resultsFolder <span class="ot">&lt;-</span> <span class="fu">normalizePath</span>(<span class="st">"./results/strategus/results"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>executionSettings <span class="ot">&lt;-</span> Strategus<span class="sc">::</span><span class="fu">createCdmExecutionSettings</span>(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">workDatabaseSchema =</span> workSchema,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cdmDatabaseSchema =</span> cdmSchema,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortTableNames =</span> CohortGenerator<span class="sc">::</span><span class="fu">getCohortTableNames</span>(<span class="at">cohortTable =</span> cohortTable),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">workFolder =</span> workFolder,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">resultsFolder =</span> resultsFolder,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">incremental =</span> <span class="cn">FALSE</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>connectionDetails <span class="ot">&lt;-</span> DatabaseConnector<span class="sc">::</span><span class="fu">createConnectionDetails</span>(</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbms =</span> <span class="st">"duckdb"</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">server =</span> dbPath</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the study (may take some minutes depending on data size)</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>Strategus<span class="sc">::</span><span class="fu">execute</span>(</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  analysisSpecifications,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">executionSettings =</span> executionSettings,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">connectionDetails =</span> connectionDetails</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>workFolder <span class="ot">&lt;-</span> <span class="fu">normalizePath</span>(<span class="st">"./results/strategus/work"</span>)</span>
+<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>resultsFolder <span class="ot">&lt;-</span> <span class="fu">normalizePath</span>(<span class="st">"./results/strategus/results"</span>)</span>
+<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>executionSettings <span class="ot">&lt;-</span> Strategus<span class="sc">::</span><span class="fu">createCdmExecutionSettings</span>(</span>
+<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">workDatabaseSchema =</span> workSchema,</span>
+<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cdmDatabaseSchema =</span> cdmSchema,</span>
+<span id="annotated-cell-7-7"><a href="#annotated-cell-7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohortTableNames =</span> CohortGenerator<span class="sc">::</span><span class="fu">getCohortTableNames</span>(<span class="at">cohortTable =</span> cohortTable),</span>
+<span id="annotated-cell-7-8"><a href="#annotated-cell-7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">workFolder =</span> workFolder,</span>
+<span id="annotated-cell-7-9"><a href="#annotated-cell-7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">resultsFolder =</span> resultsFolder,</span>
+<span id="annotated-cell-7-10"><a href="#annotated-cell-7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">incremental =</span> <span class="cn">FALSE</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-11" class="code-annotation-target"><a href="#annotated-cell-7-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="annotated-cell-7-12"><a href="#annotated-cell-7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-7-13"><a href="#annotated-cell-7-13" aria-hidden="true" tabindex="-1"></a>connectionDetails <span class="ot">&lt;-</span> DatabaseConnector<span class="sc">::</span><span class="fu">createConnectionDetails</span>(</span>
+<span id="annotated-cell-7-14"><a href="#annotated-cell-7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbms =</span> <span class="st">"duckdb"</span>,</span>
+<span id="annotated-cell-7-15"><a href="#annotated-cell-7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">server =</span> dbPath</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-16" class="code-annotation-target"><a href="#annotated-cell-7-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="annotated-cell-7-17"><a href="#annotated-cell-7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-7-18"><a href="#annotated-cell-7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the study (may take some minutes depending on data size)</span></span>
+<span id="annotated-cell-7-19"><a href="#annotated-cell-7-19" aria-hidden="true" tabindex="-1"></a>Strategus<span class="sc">::</span><span class="fu">execute</span>(</span>
+<span id="annotated-cell-7-20"><a href="#annotated-cell-7-20" aria-hidden="true" tabindex="-1"></a>  analysisSpecifications,</span>
+<span id="annotated-cell-7-21"><a href="#annotated-cell-7-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">executionSettings =</span> executionSettings,</span>
+<span id="annotated-cell-7-22"><a href="#annotated-cell-7-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">connectionDetails =</span> connectionDetails</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-7-23" class="code-annotation-target"><a href="#annotated-cell-7-23" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="1,2" data-code-annotation="1">Normalize the work and results folder paths so Strategus knows where to write files. Note you will get a warning if the folders do not exist, but they will be created later.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="11" data-code-annotation="2">Build execution settings that contain schemas, cohort tables, and output locations.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="16" data-code-annotation="3">Supply <code>connectionDetails</code> for Strategus to reach your database.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="23" data-code-annotation="4">Kick off the Strategus pipeline with the assembled specifications.</span>
+</dd>
+</dl>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   |                                                                            
@@ -499,10 +864,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   |                                                                            
   |===================================================================== |  99%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
+  |======================================================================| 100%
+
   |                                                                            
   |                                                                      |   0%
   |                                                                            
@@ -624,18 +987,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   |                                                                            
   |===================================================================== |  98%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Generating cohort set took 1.63 secs</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>cdmDatabaseId is not a string - this will cause issues when inserting into a result database so casting it
+  |======================================================================| 100%
+Generating cohort set took 1.74 secs
+cdmDatabaseId is not a string - this will cause issues when inserting into a result database so casting it
 Use timeStamp: TRUE
-Extracting data for cohort 1 to ./results/strategus/work/PatientLevelPredictionModule/targetId_1_L1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
+Extracting data for cohort 1 to ./results/strategus/work/PatientLevelPredictionModule/targetId_1_L1
+
   |                                                                            
   |                                                                      |   0%
   |                                                                            
@@ -643,10 +1000,8 @@ Extracting data for cohort 1 to ./results/strategus/work/PatientLevelPredictionM
   |                                                                            
   |===============================================                       |  67%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Constructing features on server
+  |======================================================================| 100%
+Constructing features on server
 
   |                                                                            
   |                                                                      |   0%
@@ -941,11 +1296,9 @@ Extracting data for cohort 1 to ./results/strategus/work/PatientLevelPredictionM
   |                                                                            
   |===================================================================== |  99%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Fetching data from server
-Fetching data took 43.7 secs
+  |======================================================================| 100%
+Fetching data from server
+Fetching data took 46 secs
 Creating save directory at: ./results/strategus/work/PatientLevelPredictionModule/Analysis_1
 Diagnosing impact of priorOutcomeLookback in populationSettings
 Outcome is 0 or 1
@@ -953,25 +1306,25 @@ Population created with: 45551 observations, 45551 unique subjects and 441 outco
 Population created in 0.14 secs
 Outcome is 0 or 1
 Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
-Population created in 0.0508 secs
+Population created in 0.0521 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.136 secs
+Population created in 0.135 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 442 outcomes
-Population created in 0.13 secs
+Population created in 0.131 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.257 secs
+Population created in 0.274 secs
 Outcome is 0 or 1
 Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
-Population created in 0.0416 secs
+Population created in 0.0455 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.13 secs
+Population created in 0.133 secs
 Saving diagnosePlp to ./results/strategus/work/PatientLevelPredictionModule/Analysis_1/diagnosePlp.rds
 Patient-Level Prediction Package version 6.5.0
-Study started at: 2025-09-28 19:47:15.260845
+Study started at: 2025-09-28 21:03:48.13313
 AnalysisID:         Analysis_1
 AnalysisName:       Study details
 TargetID:           1
@@ -981,11 +1334,11 @@ Covariates:         3696
 Creating population
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.135 secs
+Population created in 0.134 secs
 seed: 42
 Creating a 25% test and 75% train (into 3 folds) random stratified split by class
 Data split into 11387 test cases and 34164 train cases (11389, 11388, 11387)
-Data split in 0.967 secs
+Data split in 0.917 secs
 Train Set:
 Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
 3476 covariates in train data
@@ -994,7 +1347,7 @@ Test Set:
 Removing 13 redundant covariates
 Removing 1567 infrequent covariates
 Normalizing covariates
-Tidying covariates took 0.965 secs
+Tidying covariates took 0.99 secs
 Train Set:
 Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
 1896 covariates in train data
@@ -1005,12 +1358,12 @@ Running Cyclops
 Done.
 GLM fit status:  OK
 Creating variable importance data frame
-Prediction took 0.156 secs
-Time to fit model: 11.7 secs
+Prediction took 0.16 secs
+Time to fit model: 11.9 secs
 Removing infrequent and redundant covariates and normalizing
-Removing infrequent and redundant covariates covariates and normalizing took 0.302 secs
-Prediction took 0.122 secs
-Prediction done in: 0.557 secs
+Removing infrequent and redundant covariates covariates and normalizing took 0.299 secs
+Prediction took 0.112 secs
+Prediction done in: 0.544 secs
 Calculating Performance for Test
 =============
 AUC                 72.89
@@ -1050,8 +1403,8 @@ Calibration in large- Intercept 0.004
 Weak calibration intercept: 0.004 - gradient:1.0013
 Hosmer-Lemeshow calibration gradient: 0.93 intercept:         0.00
 Average Precision:  0.11
-Time to calculate evaluation metrics: 1.41 secs
-Calculating covariate summary @ 2025-09-28 19:47:31.268295
+Time to calculate evaluation metrics: 1.39 secs
+Calculating covariate summary @ 2025-09-28 21:04:04.255993
 This can take a while...
 Creating binary labels
 Joining with strata
@@ -1068,16 +1421,14 @@ Calculating summary for subgroup TrainWithOutcome
 Restricting to subgroup
 Calculating summary for subgroup TestWithOutcome
 Aggregating with labels and strata
-Finished covariate summary @ 2025-09-28 19:47:33.781169
-Time to calculate covariate summary: 2.51 secs
+Finished covariate summary @ 2025-09-28 21:04:06.798222
+Time to calculate covariate summary: 2.54 secs
 Run finished successfully.
 Saving PlpResult
 Creating directory to save model
 plpResult saved to ..\./results/strategus/work/PatientLevelPredictionModule/Analysis_1\plpResult
-runPlp time taken: 18.8 secs</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>All or some PLP result tables do not exist, tables being recreated
+runPlp time taken: 18.9 secs
+All or some PLP result tables do not exist, tables being recreated
 Deleting existing tables
 Creating PLP results tables
 
@@ -1142,23 +1493,17 @@ Creating PLP results tables
   |                                                                            
   |====================================================================  |  97%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>PLP result migration being applied
+  |======================================================================| 100%
+PLP result migration being applied
 Migrating data set
-Migrator using SQL files in PatientLevelPrediction</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Creating migrations table
+Migrator using SQL files in PatientLevelPrediction
+Creating migrations table
 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Migrations table created
+  |======================================================================| 100%
+Migrations table created
 Executing migration: Migration_1-store_version.sql
 
   |                                                                            
@@ -1166,122 +1511,78 @@ Executing migration: Migration_1-store_version.sql
   |                                                                            
   |===================================                                   |  50%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Saving migration: Migration_1-store_version.sql
+  |======================================================================| 100%
+Saving migration: Migration_1-store_version.sql
 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Migration complete Migration_1-store_version.sql
+  |======================================================================| 100%
+Migration complete Migration_1-store_version.sql
 Closing database connection
-Updating version number</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
+Updating version number
+
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |===================================                                   |  50%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Inserting result @ ./results/strategus/work/PatientLevelPredictionModule/Analysis_1/plpResult into database
-result loaded</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding TAR
+  |======================================================================| 100%
+Inserting result @ ./results/strategus/work/PatientLevelPredictionModule/Analysis_1/plpResult into database
+result loaded
+Adding TAR
 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tarId: 1
-Adding cohort Target</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding cohort Target</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tId: 1
-Adding cohort Outcome</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding cohort Outcome</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>oId: 2
-Adding new population settings</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>popSetId: 1
-Adding new covariate settings</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>covSetId: 1
-Adding new model settings</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>modSetId: 1
-Adding new plp data settings</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>plpDataSetId: 1
-Adding new feature_engineering settings</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>FESetId: 1
-Adding new sample settings</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>sampleSetId: 1
-Adding new tidy covariates settings</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tidySetId: 1
-Adding new split settings</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>splitId: 1
+  |======================================================================| 100%
+tarId: 1
+Adding cohort Target
+Adding cohort Target
+tId: 1
+Adding cohort Outcome
+Adding cohort Outcome
+oId: 2
+Adding new population settings
+popSetId: 1
+Adding new covariate settings
+covSetId: 1
+Adding new model settings
+modSetId: 1
+Adding new plp data settings
+plpDataSetId: 1
+Adding new feature_engineering settings
+FESetId: 1
+Adding new sample settings
+sampleSetId: 1
+Adding new tidy covariates settings
+tidySetId: 1
+Adding new split settings
+splitId: 1
 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>modelDesignId: 1
+  |======================================================================| 100%
+modelDesignId: 1
 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
+  |======================================================================| 100%
+
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Database meta data  already exists
+  |======================================================================| 100%
+Database meta data  already exists
 Database1 already exists
 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>modelId: 1 inserted for modelDesignId 1and databaseId 1
+  |======================================================================| 100%
+modelId: 1 inserted for modelDesignId 1and databaseId 1
 TAR exists
 json in jsons:TRUE
 Cohort Target exists in cohort_definition with cohort id1
@@ -1296,38 +1597,22 @@ Inserting performance...
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>performanceId: 1
-Inserting attrition for performance 1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding PredictionDistribution
-Inserting predictionDistribution for performance 1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding ThresholdSummary
-Inserting thresholdSummary for performance 1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding EvaluationStatistics
-Inserting evaluationSummary for performance 1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding CalibrationSummary
-Inserting calibrationSummary for performance 1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding DemographicSummary
-Inserting demographicSummary for performance 1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Restricting to covariates included in model
-Inserting covariateSummary for result 1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>TAR exists
+  |======================================================================| 100%
+performanceId: 1
+Inserting attrition for performance 1
+Adding PredictionDistribution
+Inserting predictionDistribution for performance 1
+Adding ThresholdSummary
+Inserting thresholdSummary for performance 1
+Adding EvaluationStatistics
+Inserting evaluationSummary for performance 1
+Adding CalibrationSummary
+Inserting calibrationSummary for performance 1
+Adding DemographicSummary
+Inserting demographicSummary for performance 1
+Restricting to covariates included in model
+Inserting covariateSummary for result 1
+TAR exists
 tarId: 1
 json in jsons:TRUE
 Cohort Target exists in cohort_definition with cohort id1
@@ -1360,42 +1645,81 @@ Database1 already exists
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>diagnosticId: 1
-Adding DiagnosticSummary</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding DiagnosticParticipants</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding DiagnosticPredictors</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding DiagnosticOutcomes</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding DiagnosticDesigns</code></pre>
+  |======================================================================| 100%
+diagnosticId: 1
+Adding DiagnosticSummary
+Adding DiagnosticParticipants
+Adding DiagnosticPredictors
+Adding DiagnosticOutcomes
+Adding DiagnosticDesigns</code></pre>
 </div>
 </div>
 </section>
 <section id="view-results" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> View Results</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Interactive Review
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use the PLP viewer to inspect the results produced by the execution step. Execute these lines when you are ready to launch the shiny viewer.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>analysisLocation <span class="ot">&lt;-</span> <span class="fu">file.path</span>(workFolder, <span class="st">"PatientLevelPredictionModule"</span>)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>PatientLevelPrediction<span class="sc">::</span><span class="fu">viewMultiplePlp</span>(analysisLocation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>analysisLocation <span class="ot">&lt;-</span> <span class="fu">file.path</span>(workFolder, <span class="st">"PatientLevelPredictionModule"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>PatientLevelPrediction<span class="sc">::</span><span class="fu">viewMultiplePlp</span>(analysisLocation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-
-
+</div>
+</div>
+</div>
 </section>
+<section id="exercises" class="level1 page-columns page-full" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Exercises</h1>
+<ol type="1">
+<li><p><strong>Model Exploration</strong>: Modify the <code>modelSettings</code> in the PLP design section to experiment with different algorithms like Random Forest or XGBoost. Observe how these changes impact model performance metrics.</p>
+
+<p>Pay attention to how more flexible models influence training versus test performance and whether additional tuning is required.</p></li>
+<li><p><strong>Seed Variation</strong>: Change the <code>seed</code> variable to different values and rerun the analysis. Document how the results vary with different seeds, particularly focusing on model stability and performance consistency. What do you think is affecting the variablitiy in our case?</p></li>
+</ol>
+
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>Environment Setup</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># XGBoost</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"xgboost"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest via reticulate</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"reticulate"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_require</span>(<span class="at">packages =</span> <span class="fu">c</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scikit-learn"</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"numpy"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scipy"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div></section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
