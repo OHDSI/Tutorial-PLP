@@ -265,7 +265,7 @@ PatientLevelPrediction::viewMultiplePlp(analysisLocation)
 1. **Model Exploration**: Modify the `modelSettings` in the PLP design section to experiment with different algorithms like Random Forest or XGBoost. Observe how these changes impact model performance metrics.
 
    ::: {.column-margin}
-   **Environment Setup**
+   **Environment setup for extra models**
    ```r
    # XGBoost
    install.packages("xgboost")
