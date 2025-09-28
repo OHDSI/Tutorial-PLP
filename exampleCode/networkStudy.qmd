@@ -22,7 +22,7 @@ This document shows how to:
 * Assemble `Strategus` analysis specifications
 * Execute the analysis specifications against a DuckDB Synthea example database.
 
-This is the tutorial reference. To run the tutorial we recommend using the R file [here]("networkStudy.R") which contains the same code but is easier to run and modify step-by-step.
+This is the tutorial reference. To run the tutorial we recommend using the R file [here](https://github.com/OHDSI/Tutorial-PLP/blob/tutorial-code/exampleCode/networkStudy.R) which contains the same code but is easier to run and modify step-by-step.
 
 
 # Setup
