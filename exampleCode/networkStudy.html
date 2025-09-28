@@ -191,6 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Assemble <code>Strategus</code> analysis specifications</li>
 <li>Execute the analysis specifications against a DuckDB Synthea example database.</li>
 </ul>
+<p>This is the tutorial reference. To run the tutorial we recommend using the R file <a href="https://github.com/OHDSI/Tutorial-PLP/blob/tutorial-code/exampleCode/networkStudy.R">here</a> which contains the same code but is easier to run and modify step-by-step.</p>
 </section>
 <section id="setup" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
@@ -230,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cohort-generation" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Cohort Generation</h1>
-<p>To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from <a href="">here</a></p>
+<p>To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from <a href="https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts">here</a>. You can open each file and press download. Then save it somewhere locally and update the paths below to point to the location where you saved them.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -626,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   |======================================================================| 100%</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Generating cohort set took 1.58 secs</code></pre>
+<pre><code>Generating cohort set took 1.63 secs</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cdmDatabaseId is not a string - this will cause issues when inserting into a result database so casting it
@@ -944,33 +945,33 @@ Extracting data for cohort 1 to ./results/strategus/work/PatientLevelPredictionM
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Fetching data from server
-Fetching data took 43.9 secs
+Fetching data took 43.7 secs
 Creating save directory at: ./results/strategus/work/PatientLevelPredictionModule/Analysis_1
 Diagnosing impact of priorOutcomeLookback in populationSettings
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.142 secs
+Population created in 0.14 secs
 Outcome is 0 or 1
 Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
-Population created in 0.0552 secs
+Population created in 0.0508 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.135 secs
+Population created in 0.136 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 442 outcomes
-Population created in 0.128 secs
+Population created in 0.13 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.267 secs
+Population created in 0.257 secs
 Outcome is 0 or 1
 Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
-Population created in 0.0439 secs
+Population created in 0.0416 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.133 secs
+Population created in 0.13 secs
 Saving diagnosePlp to ./results/strategus/work/PatientLevelPredictionModule/Analysis_1/diagnosePlp.rds
 Patient-Level Prediction Package version 6.5.0
-Study started at: 2025-09-28 19:16:53.098074
+Study started at: 2025-09-28 19:47:15.260845
 AnalysisID:         Analysis_1
 AnalysisName:       Study details
 TargetID:           1
@@ -980,11 +981,11 @@ Covariates:         3696
 Creating population
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.129 secs
+Population created in 0.135 secs
 seed: 42
 Creating a 25% test and 75% train (into 3 folds) random stratified split by class
 Data split into 11387 test cases and 34164 train cases (11389, 11388, 11387)
-Data split in 0.955 secs
+Data split in 0.967 secs
 Train Set:
 Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
 3476 covariates in train data
@@ -993,7 +994,7 @@ Test Set:
 Removing 13 redundant covariates
 Removing 1567 infrequent covariates
 Normalizing covariates
-Tidying covariates took 1.05 secs
+Tidying covariates took 0.965 secs
 Train Set:
 Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
 1896 covariates in train data
@@ -1004,12 +1005,12 @@ Running Cyclops
 Done.
 GLM fit status:  OK
 Creating variable importance data frame
-Prediction took 0.157 secs
-Time to fit model: 11.5 secs
+Prediction took 0.156 secs
+Time to fit model: 11.7 secs
 Removing infrequent and redundant covariates and normalizing
-Removing infrequent and redundant covariates covariates and normalizing took 0.296 secs
-Prediction took 0.119 secs
-Prediction done in: 0.542 secs
+Removing infrequent and redundant covariates covariates and normalizing took 0.302 secs
+Prediction took 0.122 secs
+Prediction done in: 0.557 secs
 Calculating Performance for Test
 =============
 AUC                 72.89
@@ -1049,8 +1050,8 @@ Calibration in large- Intercept 0.004
 Weak calibration intercept: 0.004 - gradient:1.0013
 Hosmer-Lemeshow calibration gradient: 0.93 intercept:         0.00
 Average Precision:  0.11
-Time to calculate evaluation metrics: 1.4 secs
-Calculating covariate summary @ 2025-09-28 19:17:08.859539
+Time to calculate evaluation metrics: 1.41 secs
+Calculating covariate summary @ 2025-09-28 19:47:31.268295
 This can take a while...
 Creating binary labels
 Joining with strata
@@ -1067,13 +1068,13 @@ Calculating summary for subgroup TrainWithOutcome
 Restricting to subgroup
 Calculating summary for subgroup TestWithOutcome
 Aggregating with labels and strata
-Finished covariate summary @ 2025-09-28 19:17:11.462613
-Time to calculate covariate summary: 2.6 secs
+Finished covariate summary @ 2025-09-28 19:47:33.781169
+Time to calculate covariate summary: 2.51 secs
 Run finished successfully.
 Saving PlpResult
 Creating directory to save model
 plpResult saved to ..\./results/strategus/work/PatientLevelPredictionModule/Analysis_1\plpResult
-runPlp time taken: 18.6 secs</code></pre>
+runPlp time taken: 18.8 secs</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>All or some PLP result tables do not exist, tables being recreated
