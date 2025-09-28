@@ -1,38 +1,4 @@
----
-title: "PatientLevelPrediction with Strategus"
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    number-sections: true
-    code-fold: show
-execute:
-  echo: true
-  warning: false
-  message: false
-  error: true
----
-
-# Overview
-
-This document shows how to:
-
-* Load cohort JSONs and generate cohorts using `CohortGenerator`.
-* Configure a `PatientLevelPrediction` (PLP) design.
-* Assemble `Strategus` analysis specifications
-* Execute the analysis specifications against a DuckDB Synthea example database.
-
-This is the tutorial reference. To run the tutorial we recommend using the R file [here]("networkStudy.R") which contains the same code but is easier to run and modify step-by-step.
-
-
-# Setup
-
-Here we need to set up our environment. First, if you don't have R installed please follow the HADES installation instructions  for your operating system from [here](https://ohdsi.github.io/Hades/articles/rSetup.html).
-
-Usually to run OHDSI packages you need to install at least R, java and a github acount (to install pacakges from github without rate-limiting). Once you have thatset up you can install the required packages for this tutorial. They are `PatientLevelPrediction`, `CohortGenerator`, `CirceR`, and `Strategus`. Also to use the example database you need to install `duckdb`. Since `Strategus` is still under development you need to install it from github which requires the `remotes` package.
-
-Further for viewing the results you will need `OHDSIShinyAppBuilder` and `OhdsiShinyModules` the latter on github.
-```{r}
+## ------------------------------------------------------------------------------------------------------------------------------------------
 #| label: setup
 # Install required packages (uncomment if needed):
 # install.packages(c("PatientLevelPrediction", "CohortGenerator", "CirceR", "remotes", "duckdb", "OHDSIShinyAppBuilder"))
@@ -43,28 +9,19 @@ library(PatientLevelPrediction)
 library(Strategus)
 
 seed <- 42
-```
 
-Further please download the example database from [here](https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb) and place in your location of choice. Then update the `dbPath` variable to point to that location:
 
-```{r}
+## ------------------------------------------------------------------------------------------------------------------------------------------
 dbPath <- "~/database/database-1M_filtered.duckdb"
-```
 
-Here are the schema settings and cohort_table name for the example database. If you would run the example for your own database you would need to update these settings.
 
-```{r}
+## ------------------------------------------------------------------------------------------------------------------------------------------
 cdmSchema <- "main"
 workSchema <- "cohorts"
 cohortTable <- "cohort_table"
-```
-
-# Cohort Generation
-
-To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from [here](https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts). You can open each file and press download. Then save it somewhere locally and update the paths below to point to the location where you saved them.
 
 
-```{r} 
+## ------------------------------------------------------------------------------------------------------------------------------------------
 #| label: cohort-generation
 targetFile <- "./cohorts/31_[T] Pandemic Prediction new target.json"
 outcomeFile <- "./cohorts/14_[O] Pandemic Prediction outcome pneumonia in hospital.json"
@@ -89,10 +46,9 @@ cohortDefShared <- cohortGeneratorModule$createCohortSharedResourceSpecification
 cohortGeneratorModuleSpecifications <- cohortGeneratorModule$createModuleSpecifications(
   generateStats = TRUE
 )
-```
 
-# PLP Design
-```{r}
+
+## ------------------------------------------------------------------------------------------------------------------------------------------
 #| label: plp-design
 
 covariateSettings <- FeatureExtraction::createDefaultCovariateSettings()
@@ -135,11 +91,9 @@ modelDesign <- PatientLevelPrediction::createModelDesign(
 
 plpModule <- PatientLevelPredictionModule$new()
 plpModuleSpecs <- plpModule$createModuleSpecifications(modelDesignList = modelDesign)
-```
 
-# Strategus Analysis Specifications
 
-```{r} 
+## ------------------------------------------------------------------------------------------------------------------------------------------
 #| label: analysis-specs
 
 analysisSpecifications <- createEmptyAnalysisSpecifications() |>
@@ -148,10 +102,9 @@ analysisSpecifications <- createEmptyAnalysisSpecifications() |>
   addModuleSpecifications(plpModuleSpecs)
 
 ParallelLogger::saveSettingsToJson(analysisSpecifications, "analysisSpecifications.json")
-```
 
-# Execution settings and running
-```{r}
+
+## ------------------------------------------------------------------------------------------------------------------------------------------
 #| label: execute
 workFolder <- normalizePath("./results/strategus/work")
 resultsFolder <- normalizePath("./results/strategus/results")
@@ -176,13 +129,10 @@ Strategus::execute(
   executionSettings = executionSettings,
   connectionDetails = connectionDetails
 )
-```
 
-# View Results
 
-```{r, eval=FALSE}
-analysisLocation <- file.path(workFolder, "PatientLevelPredictionModule")
-PatientLevelPrediction::viewMultiplePlp(analysisLocation)
-
-```
+## ----eval=FALSE----------------------------------------------------------------------------------------------------------------------------
+# analysisLocation <- file.path(workFolder, "PatientLevelPredictionModule")
+# PatientLevelPrediction::viewMultiplePlp(analysisLocation)
+# 
 
