@@ -59,7 +59,7 @@ cohortTable <- "cohort_table"
 
 # Cohort Generation
 
-To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from [here]()
+To generate the cohorts we need to load the JSON files and create a cohort definition set. Then we can create the shared resource specifications and module specifications for cohort generation. To get the JSON files you can download them from [here](https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts). You can open each file and press download. Then save it somwehere locally and update the paths below to point to the location where you saved them.
 
 
 ```{r} 
