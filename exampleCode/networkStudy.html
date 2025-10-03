@@ -369,11 +369,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Assemble <code>Strategus</code> analysis specifications</li>
 <li>Execute the analysis specifications against a DuckDB Synthea example database.</li>
 </ul>
-<p>This is the tutorial reference. To run the tutorial we recommend using the R file which can be downloaded along with the cohorts in a zip file from <a href="https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/tutorial2025.zip">here</a> This contains the same code but is easier to run and modify step-by-step. Please start a new R project and extract the contents of the zip file into the project folder.</p>
+<p>This is the tutorial reference. To run the tutorial we recommend using the R file which can be downloaded along with the cohorts in a zip file from <a href="https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/tutorial2025.zip">here</a>. This file contains the same code but is easier to run and modify step-by-step. Please start a new R project and extract the contents of the zip file into the project folder.</p>
 </section>
 <section id="setup" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
-<p>Here we need to set up our environment.</p>
+<p>First we need to set up our environment.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><label><input type="checkbox">Usually to run OHDSI packages you need to install at least R, java and a github account (to install packages from github without rate-limiting).</label></li>
 <li><label><input type="checkbox">Once you have that set up you can install the required packages for this tutorial. They are <code>PatientLevelPrediction</code>, <code>CohortGenerator</code>, <code>CirceR</code>, and <code>Strategus</code>.</label></li>
 <li><label><input type="checkbox">Also to use the example database you need to install <code>duckdb</code>. Since <code>Strategus</code> is still under development you need to install it from github which requires the <code>remotes</code> package.</label></li>
-<li><label><input type="checkbox">Further for viewing the results you will need <code>OHDSIShinyAppBuilder</code> and <code>OhdsiShinyModules</code> the latter on github.</label></li>
+<li><label><input type="checkbox">Further for viewing the results you will need <code>OHDSIShinyAppBuilder</code> and <code>OhdsiShinyModules</code> the latter is available on github.</label></li>
 </ul>
 </div>
 </div>
@@ -403,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Further please download the example database from <a href="https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb">here</a> and place in your location of choice. Then update the <code>dbPath</code> variable to point to that location. Note that the database is just over 4GB so it may take a while to download. During the tutorial it will be available from a usb stick.</p>
+<p>Please download the example database from <a href="https://huggingface.co/datasets/egillax/OHDSI-ExampleData/resolve/main/database-1M_filtered.duckdb">here</a> and place in your location of choice. Then update the <code>dbPath</code> variable to point to that location. Note that the database is just over 4GB so it may take a while to download. During the tutorial it will be available from a usb stick.</p>
 </div>
 </div>
 <div class="cell">
@@ -430,9 +430,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cdmSchema <span class="ot">&lt;-</span> <span class="st">"main"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>workSchema <span class="ot">&lt;-</span> <span class="st">"cohorts"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cohortTable <span class="ot">&lt;-</span> <span class="st">"cohort_table"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Database schemas and cohort table for our example database, if running against a different database these would need to be updated. CDM schema is where the OMOP CDM data is stored, work schema is where cohorts will be generated and cohort table is the name of the table to hold the cohorts in the cohortSchema. You need to have write access to the workSchema.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cdmSchema <span class="ot">&lt;-</span> <span class="st">"main"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>workSchema <span class="ot">&lt;-</span> <span class="st">"cohorts"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>cohortTable <span class="ot">&lt;-</span> <span class="st">"cohort_table"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -459,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-code-annotations="true">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These should point to your downloaded cohort JSON files. </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These should point to your downloaded cohort JSON files. If you unzipped the tutorial files in the project folder you can use the paths as they are.</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>targetFile <span class="ot">&lt;-</span> <span class="st">"./cohorts/31_[T] Pandemic Prediction new target.json"</span></span>
 <span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>outcomeFile <span class="ot">&lt;-</span> <span class="st">"./cohorts/14_[O] Pandemic Prediction outcome pneumonia in hospital.json"</span></span>
 <span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -991,7 +992,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   |===================================================================== |  98%
   |                                                                            
   |======================================================================| 100%
-Generating cohort set took 1.62 secs
+Generating cohort set took 1.53 secs
 cdmDatabaseId is not a string - this will cause issues when inserting into a result database so casting it
 Use timeStamp: TRUE
 Extracting data for cohort 1 to ./results/strategus/work/PatientLevelPredictionModule/targetId_1_L1
@@ -1301,33 +1302,33 @@ Constructing features on server
   |                                                                            
   |======================================================================| 100%
 Fetching data from server
-Fetching data took 13.3 secs
+Fetching data took 13.9 secs
 Creating save directory at: ./results/strategus/work/PatientLevelPredictionModule/Analysis_1
 Diagnosing impact of priorOutcomeLookback in populationSettings
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.124 secs
+Population created in 0.126 secs
 Outcome is 0 or 1
 Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
-Population created in 0.0604 secs
+Population created in 0.0561 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.118 secs
+Population created in 0.123 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 442 outcomes
-Population created in 0.131 secs
+Population created in 0.128 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.125 secs
+Population created in 0.129 secs
 Outcome is 0 or 1
 Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
-Population created in 0.0361 secs
+Population created in 0.0339 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.13 secs
+Population created in 0.133 secs
 Saving diagnosePlp to ./results/strategus/work/PatientLevelPredictionModule/Analysis_1/diagnosePlp.rds
 Patient-Level Prediction Package version 6.5.0
-Study started at: 2025-10-03 12:51:51.742836
+Study started at: 2025-10-03 13:17:24.377825
 AnalysisID:         Analysis_1
 AnalysisName:       Study details
 TargetID:           1
@@ -1337,11 +1338,11 @@ Covariates:         3696
 Creating population
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.136 secs
+Population created in 0.134 secs
 seed: 42
 Creating a 25% test and 75% train (into 3 folds) random stratified split by class
 Data split into 11387 test cases and 34164 train cases (11389, 11388, 11387)
-Data split in 0.882 secs
+Data split in 0.928 secs
 Train Set:
 Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
 3476 covariates in train data
@@ -1350,7 +1351,7 @@ Test Set:
 Removing 13 redundant covariates
 Removing 1567 infrequent covariates
 Normalizing covariates
-Tidying covariates took 0.872 secs
+Tidying covariates took 0.932 secs
 Train Set:
 Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
 1896 covariates in train data
@@ -1361,12 +1362,12 @@ Running Cyclops
 Done.
 GLM fit status:  OK
 Creating variable importance data frame
-Prediction took 0.178 secs
+Prediction took 0.13 secs
 Time to fit model: 10.9 secs
 Removing infrequent and redundant covariates and normalizing
-Removing infrequent and redundant covariates covariates and normalizing took 0.694 secs
-Prediction took 0.234 secs
-Prediction done in: 1.2 secs
+Removing infrequent and redundant covariates covariates and normalizing took 0.248 secs
+Prediction took 0.107 secs
+Prediction done in: 0.48 secs
 Calculating Performance for Test
 =============
 AUC                 72.89
@@ -1406,8 +1407,8 @@ Calibration in large- Intercept 0.004
 Weak calibration intercept: 0.004 - gradient:1.0013
 Hosmer-Lemeshow calibration gradient: 0.93 intercept:         0.00
 Average Precision:  0.11
-Time to calculate evaluation metrics: 2.08 secs
-Calculating covariate summary @ 2025-10-03 12:52:08.079184
+Time to calculate evaluation metrics: 1.52 secs
+Calculating covariate summary @ 2025-10-03 13:17:39.507714
 This can take a while...
 Creating binary labels
 Joining with strata
@@ -1424,13 +1425,13 @@ Calculating summary for subgroup TrainWithOutcome
 Restricting to subgroup
 Calculating summary for subgroup TestWithOutcome
 Aggregating with labels and strata
-Finished covariate summary @ 2025-10-03 12:52:10.848803
-Time to calculate covariate summary: 2.77 secs
+Finished covariate summary @ 2025-10-03 13:17:42.098575
+Time to calculate covariate summary: 2.59 secs
 Run finished successfully.
 Saving PlpResult
 Creating directory to save model
 plpResult saved to ..\./results/strategus/work/PatientLevelPredictionModule/Analysis_1\plpResult
-runPlp time taken: 19.4 secs
+runPlp time taken: 18 secs
 All or some PLP result tables do not exist, tables being recreated
 Deleting existing tables
 Creating PLP results tables
