@@ -450,11 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul class="task-list">
-<li><label><input type="checkbox">Download the JSON files from <a href="https://github.com/OHDSI/Tutorial-PLP/tree/tutorial-code/exampleCode/cohorts">here</a>.</label></li>
-<li><label><input type="checkbox">Open each file and press download.</label></li>
-<li><label><input type="checkbox">Save them somewhere locally and update the paths below to point to the location where you saved them.</label></li>
-</ul>
+<p>Cohort Jsons are in the Zip file you downloaded. If you unzipped the tutorial files in the project folder you can use the paths as they are. If you downloaded them separately you need to update the paths below to point to your files.</p>
 </div>
 </div>
 <div class="cell" data-code-annotations="true">
@@ -992,7 +988,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   |===================================================================== |  98%
   |                                                                            
   |======================================================================| 100%
-Generating cohort set took 1.39 secs
+Generating cohort set took 1.35 secs
 cdmDatabaseId is not a string - this will cause issues when inserting into a result database so casting it
 Use timeStamp: TRUE
 Extracting data for cohort 1 to ./results/strategus/work/PatientLevelPredictionModule/targetId_1_L1
@@ -1302,33 +1298,33 @@ Constructing features on server
   |                                                                            
   |======================================================================| 100%
 Fetching data from server
-Fetching data took 13.2 secs
+Fetching data took 13.3 secs
 Creating save directory at: ./results/strategus/work/PatientLevelPredictionModule/Analysis_1
 Diagnosing impact of priorOutcomeLookback in populationSettings
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.126 secs
+Population created in 0.133 secs
 Outcome is 0 or 1
 Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
-Population created in 0.0528 secs
+Population created in 0.0513 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.123 secs
+Population created in 0.116 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 442 outcomes
-Population created in 0.12 secs
+Population created in 0.13 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.135 secs
+Population created in 0.131 secs
 Outcome is 0 or 1
 Population created with: 59796 observations, 59796 unique subjects and 441 outcomes
-Population created in 0.0333 secs
+Population created in 0.0311 secs
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.128 secs
+Population created in 0.129 secs
 Saving diagnosePlp to ./results/strategus/work/PatientLevelPredictionModule/Analysis_1/diagnosePlp.rds
 Patient-Level Prediction Package version 6.5.0
-Study started at: 2025-10-07 16:04:25.66115
+Study started at: 2025-10-07 17:58:19.25423
 AnalysisID:         Analysis_1
 AnalysisName:       Study details
 TargetID:           1
@@ -1338,11 +1334,11 @@ Covariates:         3696
 Creating population
 Outcome is 0 or 1
 Population created with: 45551 observations, 45551 unique subjects and 441 outcomes
-Population created in 0.136 secs
+Population created in 0.129 secs
 seed: 42
 Creating a 25% test and 75% train (into 3 folds) random stratified split by class
 Data split into 11387 test cases and 34164 train cases (11389, 11388, 11387)
-Data split in 0.791 secs
+Data split in 0.81 secs
 Train Set:
 Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
 3476 covariates in train data
@@ -1351,7 +1347,7 @@ Test Set:
 Removing 13 redundant covariates
 Removing 1567 infrequent covariates
 Normalizing covariates
-Tidying covariates took 0.82 secs
+Tidying covariates took 0.862 secs
 Train Set:
 Fold 1 11389 patients with 111 outcomes - Fold 2 11388 patients with 110 outcomes - Fold 3 11387 patients with 110 outcomes
 1896 covariates in train data
@@ -1362,12 +1358,12 @@ Running Cyclops
 Done.
 GLM fit status:  OK
 Creating variable importance data frame
-Prediction took 0.134 secs
-Time to fit model: 10.8 secs
+Prediction took 0.13 secs
+Time to fit model: 10.9 secs
 Removing infrequent and redundant covariates and normalizing
-Removing infrequent and redundant covariates covariates and normalizing took 0.241 secs
+Removing infrequent and redundant covariates covariates and normalizing took 0.244 secs
 Prediction took 0.108 secs
-Prediction done in: 0.471 secs
+Prediction done in: 0.474 secs
 Calculating Performance for Test
 =============
 AUC                 72.89
@@ -1407,8 +1403,8 @@ Calibration in large- Intercept 0.004
 Weak calibration intercept: 0.004 - gradient:1.0013
 Hosmer-Lemeshow calibration gradient: 0.93 intercept:         0.00
 Average Precision:  0.11
-Time to calculate evaluation metrics: 1.37 secs
-Calculating covariate summary @ 2025-10-07 16:04:40.305139
+Time to calculate evaluation metrics: 1.35 secs
+Calculating covariate summary @ 2025-10-07 17:58:33.994674
 This can take a while...
 Creating binary labels
 Joining with strata
@@ -1425,13 +1421,13 @@ Calculating summary for subgroup TrainWithOutcome
 Restricting to subgroup
 Calculating summary for subgroup TestWithOutcome
 Aggregating with labels and strata
-Finished covariate summary @ 2025-10-07 16:04:42.392318
-Time to calculate covariate summary: 2.09 secs
+Finished covariate summary @ 2025-10-07 17:58:36.153791
+Time to calculate covariate summary: 2.16 secs
 Run finished successfully.
 Saving PlpResult
 Creating directory to save model
 plpResult saved to ..\./results/strategus/work/PatientLevelPredictionModule/Analysis_1\plpResult
-runPlp time taken: 17 secs
+runPlp time taken: 17.2 secs
 All or some PLP result tables do not exist, tables being recreated
 Deleting existing tables
 Creating PLP results tables
